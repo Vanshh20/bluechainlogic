@@ -468,7 +468,7 @@ export default function BluechainlogicLanding() {
           .bl-section{padding-left:20px!important;padding-right:20px!important}
           .bl-section-y{padding-top:60px!important;padding-bottom:60px!important}
 
-          .bl-grid-3{grid-template-columns:1fr!important;gap:0!important}
+          .bl-grid-3{grid-template-columns:1fr!important;gap:12px!important}
           .bl-grid-2{grid-template-columns:1fr!important;gap:16px!important}
 
           .bl-stats{gap:24px!important}
@@ -639,14 +639,14 @@ export default function BluechainlogicLanding() {
 
       {/* ═══ THREE PILLARS ═══ */}
       <section className="bl-section bl-section-y" style={{ padding:"120px 40px",position:"relative" }}>
-        <div style={{ maxWidth:1100,margin:"0 auto" }}>
+        <div style={{ maxWidth:1280,margin:"0 auto" }}>
           <FadeIn><div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.2em",color:"#C8963E",marginBottom:20,textAlign:"center" }}>WHY IT WORKS</div></FadeIn>
           <FadeIn delay={0.1}>
             <h2 style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:"clamp(28px, 4vw, 44px)",fontWeight:800,lineHeight:1.15,marginBottom:16,textAlign:"center",letterSpacing:"-0.02em",...gHS }}>Three layers. One system.</h2>
           </FadeIn>
           <FadeIn delay={0.15}><p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:17,lineHeight:1.7,color:"rgba(232,228,222,0.45)",textAlign:"center",maxWidth:600,margin:"0 auto 64px" }}>Most agencies are good at one thing. We built Bluechainlogic at the intersection of three.</p></FadeIn>
 
-          <div className="bl-grid-3" style={{ display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:2 }}>
+          <div className="bl-grid-3" style={{ display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:20 }}>
             {[
               { num:"01",title:"Engineering",subtitle:"We build the machine.",desc:"Custom code and enrichment engines built from scratch for every client. We write the scripts that crawl, validate, and score your prospects across dozens of data points. And we know how to run high-volume outreach that actually lands in the inbox. Domain health, deliverability, sender reputation.",accent:"rgba(95,168,211,0.5)",accentBg:"rgba(95,168,211,0.04)",accentBorder:"rgba(95,168,211,0.12)" },
               { num:"02",title:"Copywriting",subtitle:"We write what converts.",desc:"Technical data means nothing if the message doesn\u2019t land. We turn deep research into outreach that reads like it was written by a human who genuinely understands the prospect\u2019s business. Because it was. Every word is crafted to start a conversation, not trigger a spam filter.",accent:"#C8963E",accentBg:"rgba(200,150,62,0.04)",accentBorder:"rgba(200,150,62,0.12)" },
@@ -681,6 +681,28 @@ export default function BluechainlogicLanding() {
           <FadeIn delay={0.1}><h2 style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:"clamp(28px, 4vw, 44px)",fontWeight:800,lineHeight:1.15,marginBottom:16,textAlign:"center",letterSpacing:"-0.02em",...gHS }}>We don&rsquo;t guess who&rsquo;s ready to buy.</h2></FadeIn>
           <FadeIn delay={0.15}><p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:17,lineHeight:1.7,color:"rgba(232,228,222,0.45)",textAlign:"center",maxWidth:640,margin:"0 auto 24px" }}>We don&rsquo;t plug you into a template. For every client, we build custom research infrastructure tailored to your ICP, your market, and the signals that matter in your industry.</p></FadeIn>
           <FadeIn delay={0.2}><p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:17,lineHeight:1.7,color:"rgba(232,228,222,0.45)",textAlign:"center",maxWidth:640,margin:"0 auto 60px" }}>Custom code. Custom data sources. Custom signal tracking. Everything engineered around how your buyers actually behave. Not a one-size-fits-all playbook.</p></FadeIn>
+
+          {/* Signal examples grid */}
+          <div className="bl-grid-3" style={{ display:"grid",gridTemplateColumns:"repeat(3, 1fr)",gap:16,maxWidth:900,margin:"0 auto" }}>
+            {[
+              { icon:"\uD83D\uDCC8",label:"Hiring surges",detail:"New roles signal growth & budget" },
+              { icon:"\uD83D\uDCB0",label:"Funding rounds",detail:"Fresh capital means new initiatives" },
+              { icon:"\u26A1",label:"Tech stack changes",detail:"New tools create integration needs" },
+              { icon:"\uD83C\uDFAF",label:"Leadership moves",detail:"New decision-makers re-evaluate vendors" },
+              { icon:"\uD83D\uDCC4",label:"Content engagement",detail:"Topic interest reveals intent" },
+              { icon:"\uD83C\uDF10",label:"Expansion signals",detail:"New markets need new solutions" },
+            ].map((s,i)=>(
+              <FadeIn key={i} delay={0.25 + i*0.06}>
+                <div style={{ background:"rgba(255,255,255,0.02)",border:"1px solid rgba(255,255,255,0.05)",borderRadius:12,padding:"20px 22px",display:"flex",alignItems:"flex-start",gap:14 }}>
+                  <div style={{ fontSize:20,lineHeight:1,flexShrink:0,marginTop:2 }}>{s.icon}</div>
+                  <div>
+                    <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,fontWeight:600,color:"#E8E4DE",marginBottom:4 }}>{s.label}</div>
+                    <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12.5,lineHeight:1.5,color:"rgba(232,228,222,0.35)" }}>{s.detail}</div>
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
         </div>
       </section>
 

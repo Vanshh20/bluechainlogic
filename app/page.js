@@ -310,7 +310,7 @@ function FAQItem({ q, a, index }) {
   useEffect(() => { if (contentRef.current) setHeight(contentRef.current.scrollHeight); }, [open]);
 
   return (
-    <div onClick={() => setOpen(!open)} style={{
+    <div className="bl-faq-item" onClick={() => setOpen(!open)} style={{
       background: open ? "rgba(200,150,62,0.04)" : "rgba(255,255,255,0.02)",
       border: `1px solid ${open ? "rgba(200,150,62,0.18)" : "rgba(255,255,255,0.05)"}`,
       borderRadius: 14, cursor: "pointer", transition: "all 0.35s ease", overflow: "hidden", marginBottom: 10,
@@ -325,7 +325,7 @@ function FAQItem({ q, a, index }) {
         </div>
       </div>
       <div ref={contentRef} style={{ maxHeight: open ? height : 0, overflow: "hidden", transition: "max-height 0.4s cubic-bezier(.16,1,.3,1)" }}>
-        <div style={{ padding: "0 28px 24px 60px" }}>
+        <div className="bl-faq-answer" style={{ padding: "0 28px 24px 60px" }}>
           <p style={{ fontFamily: "'Instrument Sans', sans-serif", fontSize: 15, lineHeight: 1.8, color: "rgba(232,228,222,0.5)", margin: 0 }}>{a}</p>
         </div>
       </div>
@@ -426,9 +426,71 @@ export default function BluechainlogicLanding() {
         @keyframes scroll-bounce{0%,100%{transform:translateY(0);opacity:1}50%{transform:translateY(8px);opacity:0.4}}
 
         .calendly-wrapper iframe{border-radius:16px}
+        .calendly-wrapper{overflow:hidden}
         ::-webkit-scrollbar{width:6px}
         ::-webkit-scrollbar-track{background:#0A0E17}
         ::-webkit-scrollbar-thumb{background:rgba(200,150,62,0.3);border-radius:3px}
+
+        /* ── Mobile Responsive ── */
+        @media(max-width:768px){
+          .bl-nav{padding:0 16px!important}
+          .bl-nav-inner{height:56px!important}
+          .bl-nav-links{display:none!important}
+          .bl-nav-cta{padding:8px 16px!important;font-size:12px!important}
+
+          .bl-hero{padding:100px 20px 0!important}
+          .bl-section{padding-left:20px!important;padding-right:20px!important}
+          .bl-section-y{padding-top:60px!important;padding-bottom:60px!important}
+
+          .bl-grid-3{grid-template-columns:1fr!important;gap:0!important}
+          .bl-grid-2{grid-template-columns:1fr!important;gap:16px!important}
+
+          .bl-stats{gap:24px!important}
+          .bl-stats>div{min-width:auto!important}
+
+          .bl-cta-row{flex-direction:column!important;width:100%}
+          .bl-cta-row>a,.bl-cta-row>button{width:100%!important;text-align:center!important;justify-content:center!important}
+
+          .bl-hero-sub{max-width:100%!important}
+
+          .bl-comparison-header{font-size:13px!important;padding:14px 16px!important}
+          .bl-comparison-cell{padding:14px 16px!important;font-size:13px!important}
+
+          .bl-case-grid{grid-template-columns:1fr!important}
+
+          .bl-pipeline-step{padding-left:0!important;padding-right:0!important;justify-content:center!important}
+          .bl-pipeline-line{display:none!important}
+          .bl-pipeline-num{position:relative!important;left:auto!important;top:auto!important;transform:none!important;margin:0 auto 12px!important}
+          .bl-pipeline-connector{display:none!important}
+
+          .bl-guarantee{padding:36px 24px!important}
+
+          .bl-calendly-outer{padding:60px 20px 80px!important}
+          .bl-calendly-box{border-radius:12px!important}
+          .calendly-wrapper{min-height:700px!important}
+          .calendly-wrapper iframe{height:700px!important;min-height:700px!important}
+          .bl-calendly-footer{flex-direction:column!important;padding:16px 20px!important;gap:12px!important;align-items:flex-start!important}
+
+          .bl-faq-item>div:first-child{padding:16px 20px!important}
+          .bl-faq-answer{padding:0 20px 20px 44px!important}
+
+          .bl-footer{padding:32px 20px!important;flex-direction:column!important;gap:20px!important;text-align:center!important}
+          .bl-footer-links{justify-content:center!important}
+
+          .bl-tech-label{padding:0 20px!important}
+
+          .bl-marquee-text{font-size:13px!important;gap:32px!important}
+
+          .bl-video-section{padding:60px 20px!important}
+          .bl-video-grid{grid-template-columns:1fr!important}
+        }
+
+        @media(max-width:480px){
+          .bl-hero{padding:90px 16px 0!important}
+          .bl-section{padding-left:16px!important;padding-right:16px!important}
+          .bl-guarantee{padding:28px 20px!important}
+          .bl-calendly-outer{padding:40px 16px 60px!important}
+        }
 
         .grain-overlay{position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:0.022;
           background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -438,21 +500,21 @@ export default function BluechainlogicLanding() {
       <div className="grain-overlay"/>
 
       {/* ═══ NAV ═══ */}
-      <nav style={{ position:"fixed",top:0,left:0,right:0,zIndex:100, background:scrollY>50?"rgba(10,14,23,0.92)":"transparent", backdropFilter:scrollY>50?"blur(20px)":"none", borderBottom:scrollY>50?"1px solid rgba(255,255,255,0.05)":"1px solid transparent", transition:"all 0.4s ease",padding:"0 40px" }}>
-        <div style={{ maxWidth:1200,margin:"0 auto",display:"flex",alignItems:"center",justifyContent:"space-between",height:72 }}>
+      <nav className="bl-nav" style={{ position:"fixed",top:0,left:0,right:0,zIndex:100, background:scrollY>50?"rgba(10,14,23,0.92)":"transparent", backdropFilter:scrollY>50?"blur(20px)":"none", borderBottom:scrollY>50?"1px solid rgba(255,255,255,0.05)":"1px solid transparent", transition:"all 0.4s ease",padding:"0 40px" }}>
+        <div className="bl-nav-inner" style={{ maxWidth:1200,margin:"0 auto",display:"flex",alignItems:"center",justifyContent:"space-between",height:72 }}>
           <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:13,fontWeight:700,letterSpacing:"0.25em",color:"#C8963E" }}>BLUECHAINLOGIC</div>
-          <div style={{ display:"flex",gap:24,alignItems:"center" }}>
+          <div className="bl-nav-links" style={{ display:"flex",gap:24,alignItems:"center" }}>
             {[{label:"How it works",href:"#pipeline"},{label:"Our approach",href:"#pipeline"},{label:"FAQ",href:"#faq"}].map(link=>(
               <a key={link.label} href={link.href} className="nav-link" style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:13,fontWeight:500,color:"rgba(232,228,222,0.5)",textDecoration:"none",transition:"color 0.3s ease" }}>{link.label}</a>
             ))}
-            <a href="#book" style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:13,fontWeight:600,color:"#0A0E17",background:"#C8963E",padding:"10px 24px",borderRadius:6,textDecoration:"none",transition:"all 0.3s ease",letterSpacing:"0.03em" }}>Book a call</a>
+            <a href="#book" className="bl-nav-cta" style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:13,fontWeight:600,color:"#0A0E17",background:"#C8963E",padding:"10px 24px",borderRadius:6,textDecoration:"none",transition:"all 0.3s ease",letterSpacing:"0.03em" }}>Book a call</a>
           </div>
         </div>
       </nav>
 
       {/* ═══ HERO ═══ */}
       <div style={{ minHeight:"100vh",display:"flex",flexDirection:"column" }}>
-        <section style={{ position:"relative",display:"flex",alignItems:"center",padding:"120px 40px 0",overflow:"hidden",flex:1 }}>
+        <section className="bl-hero" style={{ position:"relative",display:"flex",alignItems:"center",padding:"120px 40px 0",overflow:"hidden",flex:1 }}>
           <HeroConstellation/>
           <div style={{ position:"absolute",top:"-20%",right:"-10%",width:700,height:700,background:"radial-gradient(circle,rgba(200,150,62,0.07) 0%,transparent 70%)",borderRadius:"50%",filter:"blur(80px)",pointerEvents:"none",animation:"pulse-glow 8s ease-in-out infinite" }}/>
           <div style={{ position:"absolute",bottom:"-10%",left:"-5%",width:500,height:500,background:"radial-gradient(circle,rgba(95,168,211,0.04) 0%,transparent 70%)",borderRadius:"50%",filter:"blur(60px)",pointerEvents:"none" }}/>
@@ -477,7 +539,7 @@ export default function BluechainlogicLanding() {
             </FadeIn>
 
             <FadeIn delay={0.38}>
-              <div style={{ display:"flex",gap:16,flexWrap:"wrap",alignItems:"center" }}>
+              <div className="bl-cta-row" style={{ display:"flex",gap:16,flexWrap:"wrap",alignItems:"center" }}>
                 <a href="#book" className="hero-cta" style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:15,fontWeight:600,color:"#0A0E17",background:"linear-gradient(135deg,#C8963E,#E0B860)",padding:"16px 36px",borderRadius:8,textDecoration:"none",transition:"all 0.3s ease",letterSpacing:"0.02em",boxShadow:"0 4px 24px rgba(200,150,62,0.25), 0 0 0 1px rgba(200,150,62,0.3)" }}>
                   See if you qualify →
                 </a>
@@ -486,7 +548,7 @@ export default function BluechainlogicLanding() {
             </FadeIn>
 
             <FadeIn delay={0.55}>
-              <div style={{ marginTop:48,display:"flex",gap:48,flexWrap:"wrap",borderTop:"1px solid rgba(255,255,255,0.06)",paddingTop:32 }}>
+              <div className="bl-stats" style={{ marginTop:48,display:"flex",gap:48,flexWrap:"wrap",borderTop:"1px solid rgba(255,255,255,0.06)",paddingTop:32 }}>
                 {[{value:"5 days",label:"From launch to first meetings"},{value:"36+",label:"Qualified leads guaranteed per quarter"}].map((s,i)=>(
                   <div key={i} style={{ minWidth:120 }}>
                     <div style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:28,fontWeight:800,letterSpacing:"-0.02em",...gH }}>{s.value}</div>
@@ -520,7 +582,7 @@ export default function BluechainlogicLanding() {
       </div>
 
       {/* ═══ VIDEO ═══ */}
-      <section style={{ padding:"40px 40px 120px" }}>
+      <section className="bl-section bl-section-y" style={{ padding:"40px 40px 120px" }}>
         <div style={{ maxWidth:800,margin:"0 auto" }}>
           <FadeIn>
             <div style={{ position:"relative",width:"100%",paddingBottom:"56.25%",borderRadius:16,overflow:"hidden",background:"rgba(255,255,255,0.03)",border:"1px solid rgba(255,255,255,0.06)",cursor:"pointer" }}>
@@ -537,7 +599,7 @@ export default function BluechainlogicLanding() {
       </section>
 
       {/* ═══ PROBLEM ═══ */}
-      <section style={{ padding:"120px 40px",position:"relative" }}>
+      <section className="bl-section bl-section-y" style={{ padding:"120px 40px",position:"relative" }}>
         <div style={{ position:"absolute",inset:0,background:"linear-gradient(180deg,transparent,rgba(200,150,62,0.02),transparent)",pointerEvents:"none" }}/>
         <div style={{ maxWidth:800,margin:"0 auto",textAlign:"center",position:"relative" }}>
           <FadeIn><div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.2em",color:"#C8963E",marginBottom:20 }}>THE PROBLEM</div></FadeIn>
@@ -553,7 +615,7 @@ export default function BluechainlogicLanding() {
       </section>
 
       {/* ═══ THREE PILLARS ═══ */}
-      <section style={{ padding:"120px 40px",position:"relative" }}>
+      <section className="bl-section bl-section-y" style={{ padding:"120px 40px",position:"relative" }}>
         <div style={{ maxWidth:1100,margin:"0 auto" }}>
           <FadeIn><div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.2em",color:"#C8963E",marginBottom:20,textAlign:"center" }}>WHY IT WORKS</div></FadeIn>
           <FadeIn delay={0.1}>
@@ -561,7 +623,7 @@ export default function BluechainlogicLanding() {
           </FadeIn>
           <FadeIn delay={0.15}><p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:17,lineHeight:1.7,color:"rgba(232,228,222,0.45)",textAlign:"center",maxWidth:600,margin:"0 auto 64px" }}>Most agencies are good at one thing. We built Bluechainlogic at the intersection of three.</p></FadeIn>
 
-          <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:2 }}>
+          <div className="bl-grid-3" style={{ display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:2 }}>
             {[
               { num:"01",title:"Engineering",subtitle:"We build the machine.",desc:"Custom code and enrichment engines built from scratch for every client. We write the scripts that crawl, validate, and score your prospects across dozens of data points. And we know how to run high-volume outreach that actually lands in the inbox. Domain health, deliverability, sender reputation.",accent:"rgba(95,168,211,0.5)",accentBg:"rgba(95,168,211,0.04)",accentBorder:"rgba(95,168,211,0.12)" },
               { num:"02",title:"Copywriting",subtitle:"We write what converts.",desc:"Technical data means nothing if the message doesn\u2019t land. We turn deep research into outreach that reads like it was written by a human who genuinely understands the prospect\u2019s business. Because it was. Every word is crafted to start a conversation, not trigger a spam filter.",accent:"#C8963E",accentBg:"rgba(200,150,62,0.04)",accentBorder:"rgba(200,150,62,0.12)" },
@@ -590,7 +652,7 @@ export default function BluechainlogicLanding() {
       </section>
 
       {/* ═══ SIGNALS ═══ */}
-      <section style={{ padding:"100px 40px 120px",position:"relative" }}>
+      <section className="bl-section bl-section-y" style={{ padding:"100px 40px 120px",position:"relative" }}>
         <div style={{ maxWidth:1200,margin:"0 auto" }}>
           <FadeIn><div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.2em",color:"#C8963E",marginBottom:20,textAlign:"center" }}>SIGNAL-BASED TARGETING</div></FadeIn>
           <FadeIn delay={0.1}><h2 style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:"clamp(28px, 4vw, 44px)",fontWeight:800,lineHeight:1.15,marginBottom:16,textAlign:"center",letterSpacing:"-0.02em",...gHS }}>We don&rsquo;t guess who&rsquo;s ready to buy.</h2></FadeIn>
@@ -600,11 +662,11 @@ export default function BluechainlogicLanding() {
       </section>
 
       {/* ═══ DIFFERENCE ═══ */}
-      <section style={{ padding:"120px 40px" }}>
+      <section className="bl-section bl-section-y" style={{ padding:"120px 40px" }}>
         <div style={{ maxWidth:1000,margin:"0 auto" }}>
           <FadeIn><div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.2em",color:"#C8963E",marginBottom:20,textAlign:"center" }}>THE DIFFERENCE</div></FadeIn>
           <FadeIn delay={0.1}><h2 style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:"clamp(28px, 4vw, 44px)",fontWeight:800,lineHeight:1.15,marginBottom:60,textAlign:"center",letterSpacing:"-0.02em",...gHS }}>Not another lead gen agency.</h2></FadeIn>
-          <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:20 }}>
+          <div className="bl-grid-2" style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:20 }}>
             <FadeIn>
               <div style={{ background:"rgba(255,255,255,0.02)",border:"1px solid rgba(255,255,255,0.05)",borderRadius:16,padding:"36px 32px" }}>
                 <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.15em",color:"rgba(232,228,222,0.3)",marginBottom:32 }}>GENERIC AGENCIES</div>
@@ -626,11 +688,11 @@ export default function BluechainlogicLanding() {
       </section>
 
       {/* ═══ RESULTS ═══ */}
-      <section style={{ padding:"100px 40px 120px",background:"rgba(255,255,255,0.015)" }}>
+      <section className="bl-section bl-section-y" style={{ padding:"100px 40px 120px",background:"rgba(255,255,255,0.015)" }}>
         <div style={{ maxWidth:1000,margin:"0 auto" }}>
           <FadeIn><div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.2em",color:"#C8963E",marginBottom:20,textAlign:"center" }}>RESULTS</div></FadeIn>
           <FadeIn delay={0.1}><h2 style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:"clamp(28px, 4vw, 44px)",fontWeight:800,lineHeight:1.15,marginBottom:60,textAlign:"center",letterSpacing:"-0.02em",...gHS }}>Proof, not promises.</h2></FadeIn>
-          <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:24 }}>
+          <div className="bl-grid-2 bl-case-grid" style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:24 }}>
             <FadeIn delay={0.1}>
               <div style={{ background:"rgba(255,255,255,0.02)",border:"1px solid rgba(255,255,255,0.06)",borderRadius:20,padding:"44px 36px",height:"100%",display:"flex",flexDirection:"column" }}>
                 <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.15em",color:"rgba(232,228,222,0.3)",marginBottom:24 }}>CLIENT CASE</div>
@@ -658,10 +720,10 @@ export default function BluechainlogicLanding() {
       </section>
 
       {/* ═══ GUARANTEE ═══ */}
-      <section style={{ padding:"120px 40px" }}>
+      <section className="bl-section bl-section-y" style={{ padding:"120px 40px" }}>
         <div style={{ maxWidth:700,margin:"0 auto",textAlign:"center" }}>
           <FadeIn>
-            <div style={{ background:"linear-gradient(135deg,rgba(200,150,62,0.08),rgba(200,150,62,0.02))",border:"1px solid rgba(200,150,62,0.2)",borderRadius:24,padding:"60px 48px" }}>
+            <div className="bl-guarantee" style={{ background:"linear-gradient(135deg,rgba(200,150,62,0.08),rgba(200,150,62,0.02))",border:"1px solid rgba(200,150,62,0.2)",borderRadius:24,padding:"60px 48px" }}>
               <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.2em",color:"#C8963E",marginBottom:20 }}>OUR GUARANTEE</div>
               <h2 style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:"clamp(24px, 3.5vw, 36px)",fontWeight:800,lineHeight:1.2,marginBottom:24,letterSpacing:"-0.02em",...gH }}>36 qualified leads in 90 days<br/>or you don&rsquo;t pay. Period.</h2>
               <p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:16,lineHeight:1.75,color:"rgba(232,228,222,0.5)",marginBottom:8 }}>If we don&rsquo;t deliver 36 ICP-matched prospects who have replied positively and expressed genuine interest in your services within 90 days, you pay nothing.</p>
@@ -673,7 +735,7 @@ export default function BluechainlogicLanding() {
       </section>
 
       {/* ═══ PIPELINE ═══ */}
-      <section id="pipeline" style={{ padding:"120px 40px",position:"relative",overflow:"hidden" }}>
+      <section id="pipeline" className="bl-section bl-section-y" style={{ padding:"120px 40px",position:"relative",overflow:"hidden" }}>
         <div style={{ position:"absolute",top:"20%",left:"50%",transform:"translateX(-50%)",width:600,height:600,background:"radial-gradient(circle,rgba(200,150,62,0.04) 0%,transparent 70%)",borderRadius:"50%",filter:"blur(100px)",pointerEvents:"none" }}/>
         <div style={{ maxWidth:900,margin:"0 auto",position:"relative" }}>
           <FadeIn><div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.2em",color:"#C8963E",marginBottom:20,textAlign:"center" }}>OUR APPROACH</div></FadeIn>
@@ -681,18 +743,18 @@ export default function BluechainlogicLanding() {
           <FadeIn delay={0.15}><p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:17,lineHeight:1.7,color:"rgba(232,228,222,0.45)",textAlign:"center",maxWidth:560,margin:"0 auto 80px" }}>A structured, transparent process from first conversation to measurable pipeline growth. Here&rsquo;s exactly what to expect.</p></FadeIn>
 
           <div style={{ position:"relative" }}>
-            <div style={{ position:"absolute",left:"50%",top:0,bottom:0,width:2,background:"linear-gradient(180deg,transparent,rgba(200,150,62,0.2) 10%,rgba(200,150,62,0.2) 90%,transparent)",transform:"translateX(-50%)" }}/>
+            <div className="bl-pipeline-line" style={{ position:"absolute",left:"50%",top:0,bottom:0,width:2,background:"linear-gradient(180deg,transparent,rgba(200,150,62,0.2) 10%,rgba(200,150,62,0.2) 90%,transparent)",transform:"translateX(-50%)" }}/>
             {PIPELINE_STEPS.map((step,i)=>{
               const isLeft=i%2===0;
               return (
                 <div key={i} style={{ position:"relative",marginBottom:i<PIPELINE_STEPS.length-1?20:0 }}>
                   <ScaleIn delay={i*0.08}>
-                    <div style={{ position:"absolute",left:"50%",top:24,transform:"translateX(-50%)",zIndex:2,width:44,height:44,borderRadius:12,background:"linear-gradient(135deg,#C8963E,rgba(200,150,62,0.7))",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"'Bricolage Grotesque', serif",fontSize:14,fontWeight:800,color:"#0A0E17",boxShadow:"0 0 24px rgba(200,150,62,0.2), 0 4px 12px rgba(0,0,0,0.3)" }}>{step.num}</div>
+                    <div className="bl-pipeline-num" style={{ position:"absolute",left:"50%",top:24,transform:"translateX(-50%)",zIndex:2,width:44,height:44,borderRadius:12,background:"linear-gradient(135deg,#C8963E,rgba(200,150,62,0.7))",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"'Bricolage Grotesque', serif",fontSize:14,fontWeight:800,color:"#0A0E17",boxShadow:"0 0 24px rgba(200,150,62,0.2), 0 4px 12px rgba(0,0,0,0.3)" }}>{step.num}</div>
                   </ScaleIn>
-                  <div style={{ display:"flex",justifyContent:isLeft?"flex-start":"flex-end",paddingLeft:isLeft?0:"calc(50% + 40px)",paddingRight:isLeft?"calc(50% + 40px)":0 }}>
+                  <div className="bl-pipeline-step" style={{ display:"flex",justifyContent:isLeft?"flex-start":"flex-end",paddingLeft:isLeft?0:"calc(50% + 40px)",paddingRight:isLeft?"calc(50% + 40px)":0 }}>
                     <FadeIn delay={i*0.08+0.05} direction={isLeft?"right":"left"}>
                       <div style={{ background:"rgba(255,255,255,0.025)",border:"1px solid rgba(255,255,255,0.06)",borderRadius:16,padding:"28px 28px",maxWidth:380,transition:"all 0.35s ease",position:"relative" }}>
-                        <div style={{ position:"absolute",top:38,[isLeft?"right":"left"]:-40,width:38,height:2,background:"rgba(200,150,62,0.15)" }}/>
+                        <div className="bl-pipeline-connector" style={{ position:"absolute",top:38,[isLeft?"right":"left"]:-40,width:38,height:2,background:"rgba(200,150,62,0.15)" }}/>
                         <h3 style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:19,fontWeight:700,color:"#E8E4DE",marginBottom:10 }}>{step.title}</h3>
                         <p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,lineHeight:1.75,color:"rgba(232,228,222,0.45)",margin:0 }}>{step.desc}</p>
                       </div>
@@ -717,7 +779,7 @@ export default function BluechainlogicLanding() {
 
         {/* Row 1: AI & Custom Code */}
         <FadeIn delay={0.2}>
-          <div style={{ display:"flex",alignItems:"center",gap:16,maxWidth:1200,margin:"0 auto 8px",padding:"0 40px" }}>
+          <div className="bl-tech-label" style={{ display:"flex",alignItems:"center",gap:16,maxWidth:1200,margin:"0 auto 8px",padding:"0 40px" }}>
             <div style={{ width:6,height:6,borderRadius:"50%",background:"#C8963E",boxShadow:"0 0 8px rgba(200,150,62,0.5)" }}/>
             <span style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:11,fontWeight:700,letterSpacing:"0.18em",color:"rgba(200,150,62,0.5)",textTransform:"uppercase" }}>AI Models & Custom Code</span>
             <div style={{ flex:1,height:1,background:"linear-gradient(to right,rgba(200,150,62,0.15),transparent)" }}/>
@@ -731,7 +793,7 @@ export default function BluechainlogicLanding() {
 
         {/* Row 2: CRM & Outreach Tools */}
         <FadeIn delay={0.25}>
-          <div style={{ display:"flex",alignItems:"center",gap:16,maxWidth:1200,margin:"0 auto 8px",padding:"0 40px" }}>
+          <div className="bl-tech-label" style={{ display:"flex",alignItems:"center",gap:16,maxWidth:1200,margin:"0 auto 8px",padding:"0 40px" }}>
             <div style={{ width:6,height:6,borderRadius:"50%",background:"rgba(95,168,211,0.6)",boxShadow:"0 0 8px rgba(95,168,211,0.4)" }}/>
             <span style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:11,fontWeight:700,letterSpacing:"0.18em",color:"rgba(95,168,211,0.45)",textTransform:"uppercase" }}>CRM & Outreach Integrations</span>
             <div style={{ flex:1,height:1,background:"linear-gradient(to right,rgba(95,168,211,0.12),transparent)" }}/>
@@ -745,7 +807,7 @@ export default function BluechainlogicLanding() {
       </section>
 
       {/* ═══ FAQ ═══ */}
-      <section id="faq" style={{ padding:"120px 40px",position:"relative" }}>
+      <section id="faq" className="bl-section bl-section-y" style={{ padding:"120px 40px",position:"relative" }}>
         <div style={{ position:"absolute",top:"10%",right:"-10%",width:500,height:500,background:"radial-gradient(circle,rgba(200,150,62,0.03) 0%,transparent 70%)",borderRadius:"50%",filter:"blur(80px)",pointerEvents:"none" }}/>
         <div style={{ maxWidth:780,margin:"0 auto",position:"relative" }}>
           <FadeIn><div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.2em",color:"#C8963E",marginBottom:20,textAlign:"center" }}>FAQ</div></FadeIn>
@@ -756,7 +818,7 @@ export default function BluechainlogicLanding() {
       </section>
 
       {/* ═══ CALENDLY ═══ */}
-      <section id="book" style={{ padding:"120px 40px 140px",position:"relative" }}>
+      <section id="book" className="bl-calendly-outer bl-section-y" style={{ padding:"120px 40px 140px",position:"relative" }}>
         <div style={{ position:"absolute",top:0,left:"50%",transform:"translateX(-50%)",width:800,height:400,background:"radial-gradient(ellipse,rgba(200,150,62,0.06) 0%,transparent 70%)",filter:"blur(80px)",pointerEvents:"none" }}/>
         <div style={{ maxWidth:900,margin:"0 auto",position:"relative" }}>
           <FadeIn>
@@ -767,11 +829,11 @@ export default function BluechainlogicLanding() {
             </div>
           </FadeIn>
           <FadeIn delay={0.15}>
-            <div style={{ background:"rgba(255,255,255,0.03)",border:"1px solid rgba(255,255,255,0.08)",borderRadius:20,overflow:"hidden",position:"relative" }}>
+            <div className="bl-calendly-box" style={{ background:"rgba(255,255,255,0.03)",border:"1px solid rgba(255,255,255,0.08)",borderRadius:20,overflow:"hidden",position:"relative" }}>
               <div className="calendly-wrapper" style={{ position:"relative",minHeight:660 }}>
-                <iframe src="https://calendly.com/noah-bluechainlogic/30min?hide_gdpr_banner=1&background_color=0a0e17&text_color=e8e4de&primary_color=c8963e" width="100%" height="660" frameBorder="0" title="Schedule a discovery call" style={{ border:"none",borderRadius:16,background:"#0A0E17" }}/>
+                <iframe src="https://calendly.com/noah-bluechainlogic/30min?hide_gdpr_banner=1&hide_event_type_details=1&background_color=0a0e17&text_color=e8e4de&primary_color=c8963e" width="100%" height="660" frameBorder="0" title="Schedule a discovery call" style={{ border:"none",borderRadius:16,background:"#0A0E17" }}/>
               </div>
-              <div style={{ padding:"24px 32px",borderTop:"1px solid rgba(255,255,255,0.05)",display:"flex",alignItems:"center",justifyContent:"space-between",flexWrap:"wrap",gap:16 }}>
+              <div className="bl-calendly-footer" style={{ padding:"24px 32px",borderTop:"1px solid rgba(255,255,255,0.05)",display:"flex",alignItems:"center",justifyContent:"space-between",flexWrap:"wrap",gap:16 }}>
                 <div style={{ display:"flex",gap:24,flexWrap:"wrap" }}>
                   {[{text:"30 minutes"},{text:"No commitment"}].map((item,i)=>(
                     <div key={i} style={{ display:"flex",alignItems:"center",gap:8 }}>
@@ -789,7 +851,7 @@ export default function BluechainlogicLanding() {
       </section>
 
       {/* ═══ FOOTER ═══ */}
-      <footer style={{ borderTop:"1px solid rgba(255,255,255,0.05)",padding:"40px",textAlign:"center" }}>
+      <footer className="bl-footer" style={{ borderTop:"1px solid rgba(255,255,255,0.05)",padding:"40px",textAlign:"center" }}>
         <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.2em",color:"rgba(200,150,62,0.4)" }}>BLUECHAINLOGIC</div>
         <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,color:"rgba(232,228,222,0.2)",marginTop:8 }}>Deep-research outbound that converts.</div>
         <div style={{ marginTop:20,display:"flex",justifyContent:"center",gap:24 }}>

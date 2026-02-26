@@ -382,10 +382,36 @@ const gHS = { background: "linear-gradient(135deg, #E8E4DE 20%, rgba(200,150,62,
 /* ═══════════════════════ MAIN COMPONENT ═══════════════════════ */
 export default function BluechainlogicLanding() {
   const [scrollY, setScrollY] = useState(0);
+  const calendlyRef = useRef(null);
   useEffect(() => {
     const h = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", h, { passive: true });
     return () => window.removeEventListener("scroll", h);
+  }, []);
+
+  /* ── Load Calendly widget.js (required for transparent bg + hide cookie banner) ── */
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const existing = document.querySelector('script[src*="calendly.com/assets/external/widget"]');
+    if (existing) { initCalendly(); return; }
+    const s = document.createElement("script");
+    s.src = "https://assets.calendly.com/assets/external/widget.js";
+    s.async = true;
+    s.onload = initCalendly;
+    document.head.appendChild(s);
+    /* Also add Calendly's embed CSS */
+    const link = document.createElement("link");
+    link.href = "https://assets.calendly.com/assets/external/widget.css";
+    link.rel = "stylesheet";
+    document.head.appendChild(link);
+    function initCalendly() {
+      if (!calendlyRef.current || !window.Calendly) return;
+      window.Calendly.initInlineWidget({
+        url: "https://calendly.com/noah-bluechainlogic/30min?hide_gdpr_banner=1&hide_event_type_details=1&background_color=0a0e17&text_color=e8e4de&primary_color=c8963e",
+        parentElement: calendlyRef.current,
+        resize: true
+      });
+    }
   }, []);
 
   return (
@@ -425,8 +451,8 @@ export default function BluechainlogicLanding() {
 
         @keyframes scroll-bounce{0%,100%{transform:translateY(0);opacity:1}50%{transform:translateY(8px);opacity:0.4}}
 
-        .calendly-wrapper iframe{border-radius:16px}
-        .calendly-wrapper{overflow:hidden}
+        .calendly-inline-widget{min-width:320px;height:700px;border-radius:12px;overflow:hidden}
+        .calendly-inline-widget iframe{border:none!important;border-radius:12px}
         ::-webkit-scrollbar{width:6px}
         ::-webkit-scrollbar-track{background:#0A0E17}
         ::-webkit-scrollbar-thumb{background:rgba(200,150,62,0.3);border-radius:3px}
@@ -466,10 +492,7 @@ export default function BluechainlogicLanding() {
           .bl-guarantee{padding:36px 24px!important}
 
           .bl-calendly-outer{padding:60px 20px 80px!important}
-          .bl-calendly-box{border-radius:12px!important}
-          .calendly-wrapper{min-height:700px!important}
-          .calendly-wrapper iframe{height:700px!important;min-height:700px!important}
-          .bl-calendly-footer{flex-direction:column!important;padding:16px 20px!important;gap:12px!important;align-items:flex-start!important}
+          .calendly-inline-widget{height:680px!important;border-radius:8px!important}
 
           .bl-faq-item>div:first-child{padding:16px 20px!important}
           .bl-faq-answer{padding:0 20px 20px 44px!important}
@@ -541,7 +564,7 @@ export default function BluechainlogicLanding() {
             <FadeIn delay={0.38}>
               <div className="bl-cta-row" style={{ display:"flex",gap:16,flexWrap:"wrap",alignItems:"center" }}>
                 <a href="#book" className="hero-cta" style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:15,fontWeight:600,color:"#0A0E17",background:"linear-gradient(135deg,#C8963E,#E0B860)",padding:"16px 36px",borderRadius:8,textDecoration:"none",transition:"all 0.3s ease",letterSpacing:"0.02em",boxShadow:"0 4px 24px rgba(200,150,62,0.25), 0 0 0 1px rgba(200,150,62,0.3)" }}>
-                  See if you qualify →
+                  See how this works for me &rarr;
                 </a>
                 <a href="#pipeline" style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:15,fontWeight:500,color:"rgba(232,228,222,0.6)",padding:"16px 24px",textDecoration:"none",transition:"all 0.3s ease" }}>How it works</a>
               </div>
@@ -825,19 +848,11 @@ export default function BluechainlogicLanding() {
             <div style={{ marginBottom:48 }}>
               <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.2em",color:"#C8963E",marginBottom:20 }}>LET&rsquo;S TALK</div>
               <h2 style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:"clamp(32px, 5vw, 52px)",fontWeight:800,lineHeight:1.1,marginBottom:20,letterSpacing:"-0.03em",...gH }}>Ready to fill your pipeline?</h2>
-              <p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:17,lineHeight:1.7,color:"rgba(232,228,222,0.45)",maxWidth:560,margin:"0 auto" }}>We only take on a limited number of partners to maintain research quality and market exclusivity. Book a 30-minute discovery call to see if there&rsquo;s a fit.</p>
+              <p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:17,lineHeight:1.7,color:"rgba(232,228,222,0.45)",maxWidth:560,margin:"0 auto" }}>We only take on a limited number of partners to maintain research quality and market exclusivity.</p>
             </div>
           </FadeIn>
           <FadeIn delay={0.15}>
-            <a href="https://calendly.com/noah-bluechainlogic/30min" target="_blank" rel="noopener noreferrer" className="hero-cta" style={{ display:"inline-flex",alignItems:"center",gap:10,fontFamily:"'Instrument Sans', sans-serif",fontSize:17,fontWeight:600,color:"#0A0E17",background:"linear-gradient(135deg,#C8963E,#D4A85A)",padding:"18px 44px",borderRadius:10,textDecoration:"none",transition:"all 0.3s ease",boxShadow:"0 0 40px rgba(200,150,62,0.2), 0 4px 16px rgba(0,0,0,0.3)",letterSpacing:"0.02em" }}>Book a discovery call &rarr;</a>
-            <div style={{ marginTop:24,display:"flex",justifyContent:"center",gap:24,flexWrap:"wrap" }}>
-              {["30 minutes","No commitment","Free"].map((t,i)=>(
-                <div key={i} style={{ display:"flex",alignItems:"center",gap:8 }}>
-                  <div style={{ width:4,height:4,borderRadius:"50%",background:"rgba(200,150,62,0.5)" }}/>
-                  <span style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:13,fontWeight:500,color:"rgba(232,228,222,0.4)" }}>{t}</span>
-                </div>
-              ))}
-            </div>
+            <div ref={calendlyRef} style={{ minWidth:320,height:700 }}/>
           </FadeIn>
         </div>
       </section>

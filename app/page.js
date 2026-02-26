@@ -829,21 +829,8 @@ export default function BluechainlogicLanding() {
             </div>
           </FadeIn>
           <FadeIn delay={0.15}>
-            <div className="bl-calendly-box" style={{ background:"rgba(255,255,255,0.03)",border:"1px solid rgba(255,255,255,0.08)",borderRadius:20,overflow:"hidden",position:"relative" }}>
-              <div className="calendly-wrapper" style={{ position:"relative",minHeight:660 }}>
-                <iframe src="https://calendly.com/noah-bluechainlogic/30min?hide_gdpr_banner=1&hide_event_type_details=1&background_color=0a0e17&text_color=e8e4de&primary_color=c8963e" width="100%" height="660" frameBorder="0" title="Schedule a discovery call" style={{ border:"none",borderRadius:16,background:"#0A0E17" }}/>
-              </div>
-              <div className="bl-calendly-footer" style={{ padding:"24px 32px",borderTop:"1px solid rgba(255,255,255,0.05)",display:"flex",alignItems:"center",justifyContent:"space-between",flexWrap:"wrap",gap:16 }}>
-                <div style={{ display:"flex",gap:24,flexWrap:"wrap" }}>
-                  {[{text:"30 minutes"},{text:"No commitment"}].map((item,i)=>(
-                    <div key={i} style={{ display:"flex",alignItems:"center",gap:8 }}>
-                      <div style={{ width:4,height:4,borderRadius:"50%",background:"rgba(200,150,62,0.5)" }}/>
-                      <span style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:13,fontWeight:500,color:"rgba(232,228,222,0.45)" }}>{item.text}</span>
-                    </div>
-                  ))}
-                </div>
-                <a href="https://calendly.com/noah-bluechainlogic/30min" target="_blank" rel="noopener noreferrer" style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:13,fontWeight:600,color:"#C8963E",textDecoration:"none",display:"flex",alignItems:"center",gap:6 }}>Open in new tab &rarr;</a>
-              </div>
+            <div className="calendly-wrapper" style={{ position:"relative",minHeight:660,borderRadius:8,overflow:"hidden" }}>
+              <iframe src="https://calendly.com/noah-bluechainlogic/30min?hide_gdpr_banner=1&hide_event_type_details=1&background_color=0a0e17&text_color=e8e4de&primary_color=c8963e" width="100%" height="660" frameBorder="0" title="Schedule a discovery call" style={{ border:"none",background:"#0A0E17" }}/>
             </div>
           </FadeIn>
           <FadeIn delay={0.25}><div style={{ height: 24 }} /></FadeIn>

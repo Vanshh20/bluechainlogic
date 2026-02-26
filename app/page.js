@@ -820,20 +820,25 @@ export default function BluechainlogicLanding() {
       {/* ═══ CALENDLY ═══ */}
       <section id="book" className="bl-calendly-outer bl-section-y" style={{ padding:"120px 40px 140px",position:"relative" }}>
         <div style={{ position:"absolute",top:0,left:"50%",transform:"translateX(-50%)",width:800,height:400,background:"radial-gradient(ellipse,rgba(200,150,62,0.06) 0%,transparent 70%)",filter:"blur(80px)",pointerEvents:"none" }}/>
-        <div style={{ maxWidth:900,margin:"0 auto",position:"relative" }}>
+        <div style={{ maxWidth:700,margin:"0 auto",position:"relative",textAlign:"center" }}>
           <FadeIn>
-            <div style={{ textAlign:"center",marginBottom:56 }}>
+            <div style={{ marginBottom:48 }}>
               <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.2em",color:"#C8963E",marginBottom:20 }}>LET&rsquo;S TALK</div>
               <h2 style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:"clamp(32px, 5vw, 52px)",fontWeight:800,lineHeight:1.1,marginBottom:20,letterSpacing:"-0.03em",...gH }}>Ready to fill your pipeline?</h2>
               <p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:17,lineHeight:1.7,color:"rgba(232,228,222,0.45)",maxWidth:560,margin:"0 auto" }}>We only take on a limited number of partners to maintain research quality and market exclusivity. Book a 30-minute discovery call to see if there&rsquo;s a fit.</p>
             </div>
           </FadeIn>
           <FadeIn delay={0.15}>
-            <div className="calendly-wrapper" style={{ position:"relative",minHeight:660,borderRadius:8,overflow:"hidden" }}>
-              <iframe src="https://calendly.com/noah-bluechainlogic/30min?hide_gdpr_banner=1&hide_event_type_details=1&background_color=0a0e17&text_color=e8e4de&primary_color=c8963e" width="100%" height="660" frameBorder="0" title="Schedule a discovery call" style={{ border:"none",background:"#0A0E17" }}/>
+            <a href="https://calendly.com/noah-bluechainlogic/30min" target="_blank" rel="noopener noreferrer" className="hero-cta" style={{ display:"inline-flex",alignItems:"center",gap:10,fontFamily:"'Instrument Sans', sans-serif",fontSize:17,fontWeight:600,color:"#0A0E17",background:"linear-gradient(135deg,#C8963E,#D4A85A)",padding:"18px 44px",borderRadius:10,textDecoration:"none",transition:"all 0.3s ease",boxShadow:"0 0 40px rgba(200,150,62,0.2), 0 4px 16px rgba(0,0,0,0.3)",letterSpacing:"0.02em" }}>Book a discovery call &rarr;</a>
+            <div style={{ marginTop:24,display:"flex",justifyContent:"center",gap:24,flexWrap:"wrap" }}>
+              {["30 minutes","No commitment","Free"].map((t,i)=>(
+                <div key={i} style={{ display:"flex",alignItems:"center",gap:8 }}>
+                  <div style={{ width:4,height:4,borderRadius:"50%",background:"rgba(200,150,62,0.5)" }}/>
+                  <span style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:13,fontWeight:500,color:"rgba(232,228,222,0.4)" }}>{t}</span>
+                </div>
+              ))}
             </div>
           </FadeIn>
-          <FadeIn delay={0.25}><div style={{ height: 24 }} /></FadeIn>
         </div>
       </section>
 

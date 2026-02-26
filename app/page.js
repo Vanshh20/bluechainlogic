@@ -685,16 +685,16 @@ export default function BluechainlogicLanding() {
           {/* Signal examples grid */}
           <div className="bl-grid-3" style={{ display:"grid",gridTemplateColumns:"repeat(3, 1fr)",gap:16,maxWidth:900,margin:"0 auto" }}>
             {[
-              { icon:"\uD83D\uDCC8",label:"Hiring surges",detail:"New roles signal growth & budget" },
-              { icon:"\uD83D\uDCB0",label:"Funding rounds",detail:"Fresh capital means new initiatives" },
-              { icon:"\u26A1",label:"Tech stack changes",detail:"New tools create integration needs" },
-              { icon:"\uD83C\uDFAF",label:"Leadership moves",detail:"New decision-makers re-evaluate vendors" },
-              { icon:"\uD83D\uDCC4",label:"Content engagement",detail:"Topic interest reveals intent" },
-              { icon:"\uD83C\uDF10",label:"Expansion signals",detail:"New markets need new solutions" },
+              { icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(200,150,62,0.6)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>,label:"Hiring surges",detail:"New roles signal growth & budget" },
+              { icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(200,150,62,0.6)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>,label:"Funding rounds",detail:"Fresh capital means new initiatives" },
+              { icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(200,150,62,0.6)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>,label:"Tech stack changes",detail:"New tools create integration needs" },
+              { icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(200,150,62,0.6)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>,label:"Leadership moves",detail:"New decision-makers re-evaluate vendors" },
+              { icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(200,150,62,0.6)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="12 8 15 14 9 14"/></svg>,label:"Content engagement",detail:"Topic interest reveals intent" },
+              { icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(200,150,62,0.6)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>,label:"Expansion signals",detail:"New markets need new solutions" },
             ].map((s,i)=>(
               <FadeIn key={i} delay={0.25 + i*0.06}>
                 <div style={{ background:"rgba(255,255,255,0.02)",border:"1px solid rgba(255,255,255,0.05)",borderRadius:12,padding:"20px 22px",display:"flex",alignItems:"flex-start",gap:14 }}>
-                  <div style={{ fontSize:20,lineHeight:1,flexShrink:0,marginTop:2 }}>{s.icon}</div>
+                  <div style={{ flexShrink:0,marginTop:2,width:18,height:18 }}>{s.icon}</div>
                   <div>
                     <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,fontWeight:600,color:"#E8E4DE",marginBottom:4 }}>{s.label}</div>
                     <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12.5,lineHeight:1.5,color:"rgba(232,228,222,0.35)" }}>{s.detail}</div>

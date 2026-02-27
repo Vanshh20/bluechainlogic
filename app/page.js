@@ -624,16 +624,34 @@ export default function BluechainlogicLanding() {
       {/* ═══ PROBLEM ═══ */}
       <section className="bl-section bl-section-y" style={{ padding:"120px 40px",position:"relative" }}>
         <div style={{ position:"absolute",inset:0,background:"linear-gradient(180deg,transparent,rgba(200,150,62,0.02),transparent)",pointerEvents:"none" }}/>
-        <div style={{ maxWidth:800,margin:"0 auto",textAlign:"center",position:"relative" }}>
-          <FadeIn><div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.2em",color:"#C8963E",marginBottom:20 }}>THE PROBLEM</div></FadeIn>
-          <FadeIn delay={0.1}>
-            <h2 style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:"clamp(28px, 4vw, 44px)",fontWeight:800,lineHeight:1.15,marginBottom:32,letterSpacing:"-0.02em",...gHS }}>
-              Generic outbound is dead.<br/>Deep research is what converts.
-            </h2>
-          </FadeIn>
-          <FadeIn delay={0.2}><p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:17,lineHeight:1.8,color:"rgba(232,228,222,0.5)",marginBottom:20 }}>Most agencies blast thousands of identical messages across email and LinkedIn and hope something sticks. Reply rates are tanking. Spam filters are smarter. Decision-makers ignore anything that feels templated.</p></FadeIn>
-          <FadeIn delay={0.22}><p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:17,lineHeight:1.8,color:"rgba(232,228,222,0.5)",marginBottom:20 }}>The &ldquo;best&rdquo; they offer? A personalized first line. They mention your city, your job title, maybe your latest LinkedIn post. Then the rest of the email is the same copy everyone else gets. That&rsquo;s not personalization. That&rsquo;s decoration.</p></FadeIn>
-          <FadeIn delay={0.28}><p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:17,lineHeight:1.8,color:"rgba(232,228,222,0.5)" }}>The companies that win are the ones whose outreach feels like it was written by someone who actually understands the prospect&rsquo;s business. Because it was.</p></FadeIn>
+        <div style={{ maxWidth:1080,margin:"0 auto",position:"relative" }}>
+          <div style={{ textAlign:"center",marginBottom:64 }}>
+            <FadeIn><div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.2em",color:"#C8963E",marginBottom:20 }}>THE PROBLEM</div></FadeIn>
+            <FadeIn delay={0.1}>
+              <h2 style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:"clamp(28px, 4vw, 44px)",fontWeight:800,lineHeight:1.15,letterSpacing:"-0.02em",...gHS }}>
+                Generic outbound is dead.<br/>Deep research is what converts.
+              </h2>
+            </FadeIn>
+          </div>
+
+          {/* Visual problem cards */}
+          <div className="bl-grid-3" style={{ display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:20 }}>
+            {[
+              { icon:"📉", title:"Spray & pray is failing", desc:"Thousands of identical messages. Tanking reply rates. Smarter spam filters. Decision-makers ignore anything that feels templated." },
+              { icon:"🎭", title:"\"Personalization\" is decoration", desc:"A first line mentioning your city or job title. Then the same copy everyone else gets. That's not personalization — it's a parlor trick." },
+              { icon:"✉️", title:"Real outreach feels different", desc:"The companies that win write outreach that shows genuine understanding of the prospect's business. Because someone actually did the work." }
+            ].map((item,i)=>(
+              <FadeIn key={i} delay={0.15 + i*0.08}>
+                <div style={{ background:"rgba(255,255,255,0.02)",border:"1px solid rgba(255,255,255,0.05)",borderRadius:12,padding:"36px 28px",height:"100%",transition:"border-color 0.3s ease" }}
+                  onMouseEnter={e=>e.currentTarget.style.borderColor="rgba(200,150,62,0.15)"}
+                  onMouseLeave={e=>e.currentTarget.style.borderColor="rgba(255,255,255,0.05)"}>
+                  <div style={{ fontSize:28,marginBottom:16 }}>{item.icon}</div>
+                  <div style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:18,fontWeight:700,color:"#E8E4DE",marginBottom:12,lineHeight:1.3 }}>{item.title}</div>
+                  <p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:15,lineHeight:1.7,color:"rgba(232,228,222,0.45)",margin:0 }}>{item.desc}</p>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -685,12 +703,12 @@ export default function BluechainlogicLanding() {
           {/* Signal examples grid */}
           <div className="bl-grid-3" style={{ display:"grid",gridTemplateColumns:"repeat(3, 1fr)",gap:16,maxWidth:900,margin:"0 auto" }}>
             {[
-              { icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(200,150,62,0.6)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>,label:"Hiring surges",detail:"New roles signal growth & budget" },
-              { icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(200,150,62,0.6)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>,label:"Funding rounds",detail:"Fresh capital means new initiatives" },
-              { icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(200,150,62,0.6)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>,label:"Tech stack changes",detail:"New tools create integration needs" },
-              { icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(200,150,62,0.6)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>,label:"Leadership moves",detail:"New decision-makers re-evaluate vendors" },
-              { icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(200,150,62,0.6)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="12 8 15 14 9 14"/></svg>,label:"Content engagement",detail:"Topic interest reveals intent" },
-              { icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(200,150,62,0.6)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>,label:"Expansion signals",detail:"New markets need new solutions" },
+              { icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(200,150,62,0.6)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>,label:"Ad copy analysis",detail:"We review their ads, spot weak messaging, and reference specific improvements in outreach" },
+              { icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(200,150,62,0.6)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>,label:"Sales channel mapping",detail:"We map which channels they use and identify gaps where revenue is being left on the table" },
+              { icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(200,150,62,0.6)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>,label:"Market sizing",detail:"We analyze their service area and audience to calculate untapped client potential" },
+              { icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(200,150,62,0.6)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>,label:"Job description scraping",detail:"We parse their open roles to understand internal tools, workflows, and operational gaps" },
+              { icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(200,150,62,0.6)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>,label:"Website feature audit",detail:"We scan their site for missing features and functionality to frame exactly what can improve" },
+              { icon:<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(200,150,62,0.6)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>,label:"DNS & infrastructure check",detail:"We inspect DNS records and tech setup to gauge how outdated their systems are" },
             ].map((s,i)=>(
               <FadeIn key={i} delay={0.25 + i*0.06}>
                 <div style={{ background:"rgba(255,255,255,0.02)",border:"1px solid rgba(255,255,255,0.05)",borderRadius:12,padding:"20px 22px",display:"flex",alignItems:"flex-start",gap:14 }}>

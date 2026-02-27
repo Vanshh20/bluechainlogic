@@ -624,34 +624,16 @@ export default function BluechainlogicLanding() {
       {/* ═══ PROBLEM ═══ */}
       <section className="bl-section bl-section-y" style={{ padding:"120px 40px",position:"relative" }}>
         <div style={{ position:"absolute",inset:0,background:"linear-gradient(180deg,transparent,rgba(200,150,62,0.02),transparent)",pointerEvents:"none" }}/>
-        <div style={{ maxWidth:1080,margin:"0 auto",position:"relative" }}>
-          <div style={{ textAlign:"center",marginBottom:64 }}>
-            <FadeIn><div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.2em",color:"#C8963E",marginBottom:20 }}>THE PROBLEM</div></FadeIn>
-            <FadeIn delay={0.1}>
-              <h2 style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:"clamp(28px, 4vw, 44px)",fontWeight:800,lineHeight:1.15,letterSpacing:"-0.02em",...gHS }}>
-                Generic outbound is dead.<br/>Deep research is what converts.
-              </h2>
-            </FadeIn>
-          </div>
-
-          {/* Visual problem cards */}
-          <div className="bl-grid-3" style={{ display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:20 }}>
-            {[
-              { icon:"📉", title:"Spray & pray is failing", desc:"Thousands of identical messages. Tanking reply rates. Smarter spam filters. Decision-makers ignore anything that feels templated." },
-              { icon:"🎭", title:"\"Personalization\" is decoration", desc:"A first line mentioning your city or job title. Then the same copy everyone else gets. That's not personalization — it's a parlor trick." },
-              { icon:"✉️", title:"Real outreach feels different", desc:"The companies that win write outreach that shows genuine understanding of the prospect's business. Because someone actually did the work." }
-            ].map((item,i)=>(
-              <FadeIn key={i} delay={0.15 + i*0.08}>
-                <div style={{ background:"rgba(255,255,255,0.02)",border:"1px solid rgba(255,255,255,0.05)",borderRadius:12,padding:"36px 28px",height:"100%",transition:"border-color 0.3s ease" }}
-                  onMouseEnter={e=>e.currentTarget.style.borderColor="rgba(200,150,62,0.15)"}
-                  onMouseLeave={e=>e.currentTarget.style.borderColor="rgba(255,255,255,0.05)"}>
-                  <div style={{ fontSize:28,marginBottom:16 }}>{item.icon}</div>
-                  <div style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:18,fontWeight:700,color:"#E8E4DE",marginBottom:12,lineHeight:1.3 }}>{item.title}</div>
-                  <p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:15,lineHeight:1.7,color:"rgba(232,228,222,0.45)",margin:0 }}>{item.desc}</p>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
+        <div style={{ maxWidth:800,margin:"0 auto",textAlign:"center",position:"relative" }}>
+          <FadeIn><div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.2em",color:"#C8963E",marginBottom:20 }}>THE PROBLEM</div></FadeIn>
+          <FadeIn delay={0.1}>
+            <h2 style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:"clamp(28px, 4vw, 44px)",fontWeight:800,lineHeight:1.15,marginBottom:32,letterSpacing:"-0.02em",...gHS }}>
+              Generic outbound is dead.<br/>Deep research is what converts.
+            </h2>
+          </FadeIn>
+          <FadeIn delay={0.2}><p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:17,lineHeight:1.8,color:"rgba(232,228,222,0.5)",marginBottom:20 }}>Most agencies blast thousands of identical messages across email and LinkedIn and hope something sticks. Reply rates are tanking. Spam filters are smarter. Decision-makers ignore anything that feels templated.</p></FadeIn>
+          <FadeIn delay={0.22}><p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:17,lineHeight:1.8,color:"rgba(232,228,222,0.5)",marginBottom:20 }}>The &ldquo;best&rdquo; they offer? A personalized first line. They mention your city, your job title, maybe your latest LinkedIn post. Then the rest of the email is the same copy everyone else gets. That&rsquo;s not personalization. That&rsquo;s decoration.</p></FadeIn>
+          <FadeIn delay={0.28}><p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:17,lineHeight:1.8,color:"rgba(232,228,222,0.5)" }}>The companies that win are the ones whose outreach feels like it was written by someone who actually understands the prospect&rsquo;s business. Because it was.</p></FadeIn>
         </div>
       </section>
 

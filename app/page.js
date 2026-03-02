@@ -527,7 +527,7 @@ export default function BluechainlogicLanding() {
         <div className="bl-nav-inner" style={{ maxWidth:1200,margin:"0 auto",display:"flex",alignItems:"center",justifyContent:"space-between",height:72 }}>
           <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:13,fontWeight:700,letterSpacing:"0.25em",color:"#C8963E" }}>BLUECHAINLOGIC</div>
           <div className="bl-nav-links" style={{ display:"flex",gap:24,alignItems:"center" }}>
-            {[{label:"How it works",href:"#pipeline"},{label:"Our approach",href:"#pipeline"},{label:"FAQ",href:"#faq"}].map(link=>(
+            {[{label:"Why it works",href:"#why-it-works"},{label:"Our approach",href:"#pipeline"},{label:"FAQ",href:"#faq"}].map(link=>(
               <a key={link.label} href={link.href} className="nav-link" style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:13,fontWeight:500,color:"rgba(232,228,222,0.5)",textDecoration:"none",transition:"color 0.3s ease" }}>{link.label}</a>
             ))}
             <a href="#book" className="bl-nav-cta" style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:13,fontWeight:600,color:"#0A0E17",background:"#C8963E",padding:"10px 24px",borderRadius:6,textDecoration:"none",transition:"all 0.3s ease",letterSpacing:"0.03em" }}>Book a call</a>
@@ -566,7 +566,7 @@ export default function BluechainlogicLanding() {
                 <a href="#book" className="hero-cta" style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:15,fontWeight:600,color:"#0A0E17",background:"linear-gradient(135deg,#C8963E,#E0B860)",padding:"16px 36px",borderRadius:8,textDecoration:"none",transition:"all 0.3s ease",letterSpacing:"0.02em",boxShadow:"0 4px 24px rgba(200,150,62,0.25), 0 0 0 1px rgba(200,150,62,0.3)" }}>
                   See how this works for me &rarr;
                 </a>
-                <a href="#pipeline" style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:15,fontWeight:500,color:"rgba(232,228,222,0.6)",padding:"16px 24px",textDecoration:"none",transition:"all 0.3s ease" }}>How it works</a>
+                <a href="#why-it-works" style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:15,fontWeight:500,color:"rgba(232,228,222,0.6)",padding:"16px 24px",textDecoration:"none",transition:"all 0.3s ease" }}>Why it works</a>
               </div>
             </FadeIn>
 
@@ -638,7 +638,7 @@ export default function BluechainlogicLanding() {
       </section>
 
       {/* ═══ THREE PILLARS ═══ */}
-      <section className="bl-section bl-section-y" style={{ padding:"120px 40px",position:"relative" }}>
+      <section id="why-it-works" className="bl-section bl-section-y" style={{ padding:"120px 40px",position:"relative" }}>
         <div style={{ maxWidth:1280,margin:"0 auto" }}>
           <FadeIn><div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.2em",color:"#C8963E",marginBottom:20,textAlign:"center" }}>WHY IT WORKS</div></FadeIn>
           <FadeIn delay={0.1}>

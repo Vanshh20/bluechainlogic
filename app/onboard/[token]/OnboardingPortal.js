@@ -301,7 +301,7 @@ export default function BluechainlogicOnboarding({ token }) {
     <div style={gateStyle}>
       <style>{`@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&family=Instrument+Sans:wght@400;500;600;700&display=swap');`}</style>
       <div style={gateCard}>
-        <div style={{ fontSize:48,marginBottom:24 }}>🔒</div>
+        <div style={{ width:64,height:64,borderRadius:16,background:"rgba(255,255,255,0.03)",border:"1px solid rgba(255,255,255,0.08)",display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 24px" }}><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(232,228,222,0.4)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
         <h1 style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:32,fontWeight:800,marginBottom:16,...gHS }}>Access Denied</h1>
         <p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:16,lineHeight:1.7,color:"rgba(232,228,222,0.45)",marginBottom:32 }}>This onboarding link is invalid or doesn't exist. If you believe this is an error, please reach out to your account manager.</p>
         <a href="mailto:Noah@bluechainlogic.com" style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,fontWeight:600,color:"#C8963E",textDecoration:"none" }}>Contact Noah@bluechainlogic.com →</a>
@@ -313,7 +313,7 @@ export default function BluechainlogicOnboarding({ token }) {
     <div style={gateStyle}>
       <style>{`@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&family=Instrument+Sans:wght@400;500;600;700&display=swap');`}</style>
       <div style={gateCard}>
-        <div style={{ fontSize:48,marginBottom:24 }}>⏰</div>
+        <div style={{ width:64,height:64,borderRadius:16,background:"rgba(200,150,62,0.06)",border:"1px solid rgba(200,150,62,0.15)",display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 24px" }}><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C8963E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
         <h1 style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:32,fontWeight:800,marginBottom:16,...gHS }}>Link Expired</h1>
         <p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:16,lineHeight:1.7,color:"rgba(232,228,222,0.45)",marginBottom:32 }}>This onboarding link has expired. Please contact us and we'll send you a fresh link right away.</p>
         <a href="mailto:Noah@bluechainlogic.com" style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,fontWeight:600,color:"#C8963E",textDecoration:"none" }}>Request new link →</a>
@@ -325,7 +325,7 @@ export default function BluechainlogicOnboarding({ token }) {
     <div style={gateStyle}>
       <style>{`@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&family=Instrument+Sans:wght@400;500;600;700&display=swap');`}</style>
       <div style={gateCard}>
-        <div style={{ fontSize:48,marginBottom:24 }}>✅</div>
+        <div style={{ width:64,height:64,borderRadius:16,background:"rgba(76,175,80,0.08)",border:"1px solid rgba(76,175,80,0.2)",display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 24px" }}><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
         <h1 style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:32,fontWeight:800,marginBottom:16,...gHS }}>Already Completed</h1>
         <p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:16,lineHeight:1.7,color:"rgba(232,228,222,0.45)",marginBottom:32 }}>This onboarding has already been submitted. If you need to make changes, reach out to your account manager.</p>
         <a href="mailto:Noah@bluechainlogic.com" style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,fontWeight:600,color:"#C8963E",textDecoration:"none" }}>Contact Noah@bluechainlogic.com →</a>
@@ -337,7 +337,7 @@ export default function BluechainlogicOnboarding({ token }) {
     <div style={gateStyle}>
       <style>{`@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&family=Instrument+Sans:wght@400;500;600;700&display=swap');`}</style>
       <div style={gateCard}>
-        <div style={{ fontSize:48,marginBottom:24 }}>⚠️</div>
+        <div style={{ width:64,height:64,borderRadius:16,background:"rgba(255,165,0,0.06)",border:"1px solid rgba(255,165,0,0.15)",display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 24px" }}><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFA500" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
         <h1 style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:32,fontWeight:800,marginBottom:16,...gHS }}>Something went wrong</h1>
         <p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:16,lineHeight:1.7,color:"rgba(232,228,222,0.45)",marginBottom:32 }}>We couldn't verify your access. Please try refreshing the page or contact us if the issue persists.</p>
         <button onClick={()=>window.location.reload()} style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,fontWeight:600,color:"#0A0E17",background:"linear-gradient(135deg,#C8963E,#E0B860)",padding:"12px 28px",borderRadius:8,border:"none",cursor:"pointer" }}>Try again</button>
@@ -349,15 +349,10 @@ export default function BluechainlogicOnboarding({ token }) {
     <div style={gateStyle}>
       <style>{`@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&family=Instrument+Sans:wght@400;500;600;700&display=swap');@keyframes fadeInUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}`}</style>
       <div style={{ ...gateCard,animation:"fadeInUp 0.6s cubic-bezier(.16,1,.3,1) both" }}>
-        <div style={{ fontSize:56,marginBottom:24 }}>🎉</div>
+        <div style={{ width:64,height:64,borderRadius:16,background:"linear-gradient(135deg,rgba(200,150,62,0.15),rgba(200,150,62,0.05))",border:"1px solid rgba(200,150,62,0.2)",display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 24px" }}><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C8963E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
         <h1 style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:36,fontWeight:800,marginBottom:16,...gH }}>You're all set!</h1>
         <p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:17,lineHeight:1.7,color:"rgba(232,228,222,0.55)",marginBottom:12 }}>Your onboarding has been submitted successfully.</p>
-        <p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:15,lineHeight:1.7,color:"rgba(232,228,222,0.35)",marginBottom:40 }}>We'll review everything and reach out within 24 hours to kick things off. Keep an eye on your inbox.</p>
-        <div style={{ padding:"20px 28px",background:"rgba(200,150,62,0.06)",border:"1px solid rgba(200,150,62,0.15)",borderRadius:12 }}>
-          <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.15em",color:"rgba(200,150,62,0.5)",marginBottom:8 }}>YOUR ACCOUNT MANAGER</div>
-          <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:16,fontWeight:600,color:"#E8E4DE" }}>Noah</div>
-          <a href="mailto:Noah@bluechainlogic.com" style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,color:"#C8963E",textDecoration:"none" }}>Noah@bluechainlogic.com</a>
-        </div>
+        <p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:15,lineHeight:1.7,color:"rgba(232,228,222,0.35)" }}>We'll review everything and reach out within 24 hours to kick things off. Keep an eye on your inbox.</p>
       </div>
     </div>
   );
@@ -558,7 +553,7 @@ export default function BluechainlogicOnboarding({ token }) {
               <Stagger stepKey={sk} delay={0.2}><p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:17,lineHeight:1.7,color:"rgba(232,228,222,0.45)",textAlign:"center",maxWidth:600,margin:"0 auto 40px" }}>Zapmail creates and manages your sending mailboxes. Follow the instructions for your plan below.</p></Stagger>
 
               <Stagger stepKey={sk} delay={0.26}>
-                <a href="https://zapmail.com?ref=bluechainlogic" target="_blank" rel="noopener noreferrer" style={{ display:"block",padding:"16px 24px",fontFamily:"'Instrument Sans', sans-serif",fontSize:15,fontWeight:600,color:"#0A0E17",background:"linear-gradient(135deg,#4285F4,#5B9BF4)",borderRadius:10,textDecoration:"none",textAlign:"center",boxShadow:"0 4px 20px rgba(66,133,244,0.2)",marginBottom:32 }}>Create an Account on Zapmail →</a>
+                <a href="https://zapmail.ai?ref=bluechainlogic" target="_blank" rel="noopener noreferrer" style={{ display:"block",padding:"16px 24px",fontFamily:"'Instrument Sans', sans-serif",fontSize:15,fontWeight:600,color:"#0A0E17",background:"linear-gradient(135deg,#4285F4,#5B9BF4)",borderRadius:10,textDecoration:"none",textAlign:"center",boxShadow:"0 4px 20px rgba(66,133,244,0.2)",marginBottom:32 }}>Create an Account on Zapmail →</a>
               </Stagger>
 
               {/* ── 30 Email Accounts ── */}

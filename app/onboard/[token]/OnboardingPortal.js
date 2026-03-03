@@ -16,6 +16,8 @@ const STEPS = [
   { id: "timeline", label: "Timeline", icon: "⚡" },
   { id: "godaddy", label: "Domains", icon: "🌐" },
   { id: "zapmail", label: "Email", icon: "📨" },
+  { id: "vayne", label: "Warm-Up", icon: "🔥" },
+  { id: "anymailfinder", label: "Enrichment", icon: "🔍" },
   { id: "instantly", label: "Sending", icon: "🚀" },
   { id: "senders", label: "Senders", icon: "✉️" },
   { id: "photos", label: "Photos", icon: "📷" },
@@ -119,7 +121,7 @@ function Stagger({ children, stepKey, delay = 0 }) {
 
 /* ═══════════════════════ SOFTWARE SUB-NAV ═══════════════════════ */
 function SoftwareSubNav({ activeIndex }) {
-  const labels = ["Domains", "Email", "Sending"];
+  const labels = ["Domains", "Email", "Warm-Up", "Enrichment", "Sending"];
   return (
     <div style={{ display: "flex", justifyContent: "center", marginBottom: 24 }}>
       <div style={{ display: "inline-flex", gap: 6 }}>
@@ -164,7 +166,7 @@ function ConfirmModal({ open, onConfirm, onCancel, toolName }) {
             <code style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:16,fontWeight:700,color:"#C8963E",letterSpacing:"0.01em" }}>Noah@bluechainlogic.com</code>
           </div>
           <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:13,color:"rgba(232,228,222,0.35)",marginBottom:28,lineHeight:1.6 }}>
-            Without admin access we cannot configure your {toolName === "GoDaddy" ? "domains and DNS records" : toolName === "Zapmail" ? "email accounts" : "campaigns and deliverability"}. This will block your launch.
+            Without admin access we cannot configure your {toolName === "GoDaddy" ? "domains and DNS records" : toolName === "Zapmail" ? "email accounts" : toolName === "Vayne.io" ? "email warm-up and deliverability" : toolName === "AnyMailFinder" ? "lead enrichment and email finding" : "campaigns and deliverability"}. This will block your launch.
           </div>
           <div style={{ display:"flex",gap:12 }}>
             <button onClick={onCancel} style={{
@@ -239,7 +241,7 @@ export default function BluechainlogicOnboarding({ token }) {
 
   const next = () => goTo(Math.min(step + 1, STEPS.length - 1));
   const nextWithCheck = () => {
-    if (step >= 2 && step <= 4) { setShowAdminModal(true); return; }
+    if (step >= 2 && step <= 6) { setShowAdminModal(true); return; }
     next();
   };
   const confirmAdmin = () => { setShowAdminModal(false); next(); };
@@ -427,7 +429,7 @@ export default function BluechainlogicOnboarding({ token }) {
               </Stagger>
               <Stagger stepKey={sk} delay={0.26}>
                 <div style={{ display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:16,maxWidth:600,margin:"0 auto 48px" }}>
-                  {[{icon:"🌐",label:"Buy domains & tools",time:"~5 min"},{icon:"✉️",label:"Configure identity",time:"~3 min"},{icon:"🏢",label:"Brief us",time:"~2 min"}].map((item,i)=>(
+                  {[{icon:"🌐",label:"Buy domains & tools",time:"~7 min"},{icon:"✉️",label:"Configure identity",time:"~3 min"},{icon:"🏢",label:"Brief us",time:"~2 min"}].map((item,i)=>(
                     <div key={i} style={{ ...cardStyle,padding:"24px 16px",textAlign:"center" }}>
                       <div style={{ fontSize:28,marginBottom:10 }}>{item.icon}</div>
                       <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,fontWeight:600,color:"#E8E4DE",marginBottom:4 }}>{item.label}</div>
@@ -447,7 +449,7 @@ export default function BluechainlogicOnboarding({ token }) {
         {step === 1 && (
           <div className="step-content" style={{ padding:"120px 40px 100px" }}>
             <div style={{ maxWidth:900,margin:"0 auto" }}>
-              <Stagger stepKey={sk} delay={0.05}><div style={{ textAlign:"center",marginBottom:8 }}><span style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.2em",color:"#C8963E" }}>STEP 1 OF 8</span></div></Stagger>
+              <Stagger stepKey={sk} delay={0.05}><div style={{ textAlign:"center",marginBottom:8 }}><span style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.2em",color:"#C8963E" }}>STEP 1 OF 10</span></div></Stagger>
               <Stagger stepKey={sk} delay={0.12}><h2 style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:"clamp(28px,4vw,44px)",fontWeight:800,lineHeight:1.15,textAlign:"center",letterSpacing:"-0.02em",...gHS,marginBottom:16 }}>How fast do you want to move?</h2></Stagger>
               <Stagger stepKey={sk} delay={0.19}><p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:17,lineHeight:1.7,color:"rgba(232,228,222,0.45)",textAlign:"center",maxWidth:560,margin:"0 auto 48px" }}>Same quality. The only difference is speed.</p></Stagger>
 
@@ -503,7 +505,7 @@ export default function BluechainlogicOnboarding({ token }) {
         {step === 2 && (
           <div className="step-content" style={{ padding:"120px 40px 100px" }}>
             <div style={{ maxWidth:660,margin:"0 auto" }}>
-              <Stagger stepKey={sk} delay={0.05}><div style={{ textAlign:"center",marginBottom:8 }}><span style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.2em",color:"#C8963E" }}>STEP 2 OF 8 · SOFTWARE</span></div></Stagger>
+              <Stagger stepKey={sk} delay={0.05}><div style={{ textAlign:"center",marginBottom:8 }}><span style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.2em",color:"#C8963E" }}>STEP 2 OF 10 · SOFTWARE</span></div></Stagger>
               <Stagger stepKey={sk} delay={0.08}><SoftwareSubNav activeIndex={0}/></Stagger>
               <Stagger stepKey={sk} delay={0.14}><h2 style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:"clamp(28px,4vw,44px)",fontWeight:800,lineHeight:1.15,textAlign:"center",letterSpacing:"-0.02em",...gHS,marginBottom:16 }}>Purchase Sending Domains</h2></Stagger>
               <Stagger stepKey={sk} delay={0.2}><p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:17,lineHeight:1.7,color:"rgba(232,228,222,0.45)",textAlign:"center",maxWidth:600,margin:"0 auto 40px" }}>We use secondary domains to protect your primary domain's reputation. Each domain holds 3 email accounts — so you'll need <strong style={{ color:"#E8E4DE" }}>10 domains for 30 accounts</strong> or <strong style={{ color:"#E8E4DE" }}>16 domains for 50 accounts</strong>.</p></Stagger>
@@ -547,7 +549,7 @@ export default function BluechainlogicOnboarding({ token }) {
         {step === 3 && (
           <div className="step-content" style={{ padding:"120px 40px 100px" }}>
             <div style={{ maxWidth:660,margin:"0 auto" }}>
-              <Stagger stepKey={sk} delay={0.05}><div style={{ textAlign:"center",marginBottom:8 }}><span style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.2em",color:"#C8963E" }}>STEP 3 OF 8 · SOFTWARE</span></div></Stagger>
+              <Stagger stepKey={sk} delay={0.05}><div style={{ textAlign:"center",marginBottom:8 }}><span style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.2em",color:"#C8963E" }}>STEP 3 OF 10 · SOFTWARE</span></div></Stagger>
               <Stagger stepKey={sk} delay={0.08}><SoftwareSubNav activeIndex={1}/></Stagger>
               <Stagger stepKey={sk} delay={0.14}><h2 style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:"clamp(28px,4vw,44px)",fontWeight:800,lineHeight:1.15,textAlign:"center",letterSpacing:"-0.02em",...gHS,marginBottom:16 }}>Set Up Email Accounts</h2></Stagger>
               <Stagger stepKey={sk} delay={0.2}><p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:17,lineHeight:1.7,color:"rgba(232,228,222,0.45)",textAlign:"center",maxWidth:600,margin:"0 auto 40px" }}>Zapmail creates and manages your sending mailboxes. Follow the instructions for your plan below.</p></Stagger>
@@ -605,12 +607,128 @@ export default function BluechainlogicOnboarding({ token }) {
           </div>
         )}
 
-        {/* ═══ 4 — INSTANTLY ═══ */}
+        {/* ═══ 4 — VAYNE.IO: WARM-UP ═══ */}
         {step === 4 && (
           <div className="step-content" style={{ padding:"120px 40px 100px" }}>
             <div style={{ maxWidth:660,margin:"0 auto" }}>
-              <Stagger stepKey={sk} delay={0.05}><div style={{ textAlign:"center",marginBottom:8 }}><span style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.2em",color:"#C8963E" }}>STEP 4 OF 8 · SOFTWARE</span></div></Stagger>
+              <Stagger stepKey={sk} delay={0.05}><div style={{ textAlign:"center",marginBottom:8 }}><span style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.2em",color:"#C8963E" }}>STEP 4 OF 10 · SOFTWARE</span></div></Stagger>
               <Stagger stepKey={sk} delay={0.08}><SoftwareSubNav activeIndex={2}/></Stagger>
+              <Stagger stepKey={sk} delay={0.14}><h2 style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:"clamp(28px,4vw,44px)",fontWeight:800,lineHeight:1.15,textAlign:"center",letterSpacing:"-0.02em",...gHS,marginBottom:16 }}>Set Up Email Warm-Up</h2></Stagger>
+              <Stagger stepKey={sk} delay={0.2}><p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:17,lineHeight:1.7,color:"rgba(232,228,222,0.45)",textAlign:"center",maxWidth:600,margin:"0 auto 40px" }}>Vayne.io warms up your email accounts to build sender reputation and maximize deliverability. Your plan depends on how many email accounts you purchased on Zapmail.</p></Stagger>
+
+              <Stagger stepKey={sk} delay={0.26}>
+                <a href="https://vayne.io" target="_blank" rel="noopener noreferrer" style={{ display:"block",padding:"16px 24px",fontFamily:"'Instrument Sans', sans-serif",fontSize:15,fontWeight:600,color:"#0A0E17",background:"linear-gradient(135deg,#E05252,#F47A7A)",borderRadius:10,textDecoration:"none",textAlign:"center",boxShadow:"0 4px 20px rgba(224,82,82,0.2)",marginBottom:32 }}>Create an Account on Vayne.io →</a>
+              </Stagger>
+
+              {/* ── 30 Email Accounts → Freelancer Plan ── */}
+              <Stagger stepKey={sk} delay={0.3}>
+                <div style={{ ...goldCardStyle,padding:"32px 28px",marginBottom:24 }}>
+                  <div style={{ display:"flex",alignItems:"center",gap:12,marginBottom:24 }}>
+                    <div style={{ padding:"4px 12px",background:"linear-gradient(135deg,#C8963E,#E0B860)",borderRadius:6,fontFamily:"'Instrument Sans', sans-serif",fontSize:10,fontWeight:700,letterSpacing:"0.1em",color:"#0A0E17" }}>30 ACCOUNTS</div>
+                    <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,fontWeight:600,color:"#E8E4DE" }}>Freelancer Plan</div>
+                  </div>
+                  <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:13,color:"rgba(232,228,222,0.4)",lineHeight:1.7,marginBottom:20 }}>If you purchased <strong style={{ color:"#E8E4DE" }}>30 email accounts</strong> on Zapmail, you need the <strong style={{ color:"#C8963E" }}>Freelancer plan</strong> on Vayne.io.</div>
+                  <div style={{ display:"flex",flexDirection:"column",gap:18 }}>
+                    <InstructionStep number="1" text="Go to Vayne.io and create your account." />
+                    <InstructionStep number="2" text='Navigate to the Pricing page and purchase the Freelancer plan — this covers warm-up for up to 30 email accounts.' />
+                    <InstructionStep number="3" text='Once subscribed, go to Settings → Team (or Workspace), click "Invite Member" and add us with Admin permissions:' highlight="Noah@bluechainlogic.com" />
+                    <InstructionStep number="4" text="We'll connect your Zapmail accounts and configure the warm-up schedules to build your sender reputation." />
+                  </div>
+                </div>
+              </Stagger>
+
+              {/* ── 50 Email Accounts → Starter Package ── */}
+              <Stagger stepKey={sk} delay={0.36}>
+                <div style={{ ...cardStyle,padding:"32px 28px" }}>
+                  <div style={{ display:"flex",alignItems:"center",gap:12,marginBottom:24 }}>
+                    <div style={{ padding:"4px 12px",background:"rgba(255,255,255,0.08)",borderRadius:6,fontFamily:"'Instrument Sans', sans-serif",fontSize:10,fontWeight:700,letterSpacing:"0.1em",color:"rgba(232,228,222,0.6)" }}>50 ACCOUNTS</div>
+                    <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,fontWeight:600,color:"#E8E4DE" }}>Starter Package</div>
+                  </div>
+                  <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:13,color:"rgba(232,228,222,0.4)",lineHeight:1.7,marginBottom:20 }}>If you purchased <strong style={{ color:"#E8E4DE" }}>50 email accounts</strong> on Zapmail, you need the <strong style={{ color:"#C8963E" }}>Starter package</strong> on Vayne.io to cover all your mailboxes.</div>
+                  <div style={{ display:"flex",flexDirection:"column",gap:18 }}>
+                    <InstructionStep number="1" text="Go to Vayne.io and create your account." />
+                    <InstructionStep number="2" text='Navigate to the Pricing page and purchase the Starter package — this covers warm-up for up to 50 email accounts.' />
+                    <InstructionStep number="3" text='Once subscribed, go to Settings → Team (or Workspace), click "Invite Member" and add us with Admin permissions:' highlight="Noah@bluechainlogic.com" />
+                    <InstructionStep number="4" text="We'll connect all 50 of your Zapmail accounts and configure warm-up schedules across the board." />
+                  </div>
+                </div>
+              </Stagger>
+
+              <Stagger stepKey={sk} delay={0.42}>
+                <div style={{ marginTop:20,padding:"20px 24px",background:"rgba(255,165,0,0.04)",border:"1px solid rgba(255,165,0,0.12)",borderRadius:12,display:"flex",gap:14,alignItems:"flex-start" }}>
+                  <div style={{ fontSize:20,flexShrink:0 }}>⚠️</div>
+                  <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,lineHeight:1.7,color:"rgba(232,228,222,0.55)" }}><strong style={{ color:"#E8E4DE" }}>Why this matters:</strong> Without admin access to Vayne.io, we cannot configure email warm-up for your accounts. Poor warm-up means poor deliverability — your emails will land in spam instead of the inbox.</div>
+                </div>
+              </Stagger>
+              <Stagger stepKey={sk} delay={0.46}><StepNav onBack={back} onNext={nextWithCheck} nextLabel="Vayne.io set up — Next →"/></Stagger>
+            </div>
+          </div>
+        )}
+
+        {/* ═══ 5 — ANYMAILFINDER: ENRICHMENT ═══ */}
+        {step === 5 && (
+          <div className="step-content" style={{ padding:"120px 40px 100px" }}>
+            <div style={{ maxWidth:660,margin:"0 auto" }}>
+              <Stagger stepKey={sk} delay={0.05}><div style={{ textAlign:"center",marginBottom:8 }}><span style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.2em",color:"#C8963E" }}>STEP 5 OF 10 · SOFTWARE</span></div></Stagger>
+              <Stagger stepKey={sk} delay={0.08}><SoftwareSubNav activeIndex={3}/></Stagger>
+              <Stagger stepKey={sk} delay={0.14}><h2 style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:"clamp(28px,4vw,44px)",fontWeight:800,lineHeight:1.15,textAlign:"center",letterSpacing:"-0.02em",...gHS,marginBottom:16 }}>Set Up Lead Enrichment</h2></Stagger>
+              <Stagger stepKey={sk} delay={0.2}><p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:17,lineHeight:1.7,color:"rgba(232,228,222,0.45)",textAlign:"center",maxWidth:600,margin:"0 auto 40px" }}>AnyMailFinder finds and verifies email addresses for your target prospects. Your plan depends on the volume of outreach based on the number of email accounts you set up.</p></Stagger>
+
+              <Stagger stepKey={sk} delay={0.26}>
+                <a href="https://anymailfinder.com/?via=noah-hoekendijk" target="_blank" rel="noopener noreferrer" style={{ display:"block",padding:"16px 24px",fontFamily:"'Instrument Sans', sans-serif",fontSize:15,fontWeight:600,color:"#0A0E17",background:"linear-gradient(135deg,#10B981,#34D399)",borderRadius:10,textDecoration:"none",textAlign:"center",boxShadow:"0 4px 20px rgba(16,185,129,0.2)",marginBottom:32 }}>Create an Account on AnyMailFinder →</a>
+              </Stagger>
+
+              {/* ── 30 Email Accounts → 5k credits/month ── */}
+              <Stagger stepKey={sk} delay={0.3}>
+                <div style={{ ...goldCardStyle,padding:"32px 28px",marginBottom:24 }}>
+                  <div style={{ display:"flex",alignItems:"center",gap:12,marginBottom:24 }}>
+                    <div style={{ padding:"4px 12px",background:"linear-gradient(135deg,#C8963E,#E0B860)",borderRadius:6,fontFamily:"'Instrument Sans', sans-serif",fontSize:10,fontWeight:700,letterSpacing:"0.1em",color:"#0A0E17" }}>30 ACCOUNTS</div>
+                    <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,fontWeight:600,color:"#E8E4DE" }}>5,000 Credits / Month</div>
+                  </div>
+                  <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:13,color:"rgba(232,228,222,0.4)",lineHeight:1.7,marginBottom:20 }}>If you set up <strong style={{ color:"#E8E4DE" }}>30 email accounts</strong>, you need the <strong style={{ color:"#C8963E" }}>5,000 credits per month</strong> plan on AnyMailFinder to keep your lead pipeline full.</div>
+                  <div style={{ display:"flex",flexDirection:"column",gap:18 }}>
+                    <InstructionStep number="1" text="Click the button above to go to AnyMailFinder and create your account." />
+                    <InstructionStep number="2" text='Navigate to the Pricing / Plans page and purchase the 5,000 credits per month plan.' />
+                    <InstructionStep number="3" text='Once subscribed, go to your Account Settings → API Keys, copy your API key and send it to us at:' highlight="Noah@bluechainlogic.com" />
+                    <InstructionStep number="4" text="Alternatively, if there is a Team or Workspace feature, invite us with Admin permissions using the email above. We'll integrate it with your campaign infrastructure." />
+                  </div>
+                </div>
+              </Stagger>
+
+              {/* ── 50 Email Accounts → 10k credits/month ── */}
+              <Stagger stepKey={sk} delay={0.36}>
+                <div style={{ ...cardStyle,padding:"32px 28px" }}>
+                  <div style={{ display:"flex",alignItems:"center",gap:12,marginBottom:24 }}>
+                    <div style={{ padding:"4px 12px",background:"rgba(255,255,255,0.08)",borderRadius:6,fontFamily:"'Instrument Sans', sans-serif",fontSize:10,fontWeight:700,letterSpacing:"0.1em",color:"rgba(232,228,222,0.6)" }}>50 ACCOUNTS</div>
+                    <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,fontWeight:600,color:"#E8E4DE" }}>10,000 Credits / Month</div>
+                  </div>
+                  <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:13,color:"rgba(232,228,222,0.4)",lineHeight:1.7,marginBottom:20 }}>If you set up <strong style={{ color:"#E8E4DE" }}>50 email accounts</strong>, you need the <strong style={{ color:"#C8963E" }}>10,000 credits per month</strong> plan on AnyMailFinder to handle the higher outreach volume.</div>
+                  <div style={{ display:"flex",flexDirection:"column",gap:18 }}>
+                    <InstructionStep number="1" text="Click the button above to go to AnyMailFinder and create your account." />
+                    <InstructionStep number="2" text='Navigate to the Pricing / Plans page and purchase the 10,000 credits per month plan.' />
+                    <InstructionStep number="3" text='Once subscribed, go to your Account Settings → API Keys, copy your API key and send it to us at:' highlight="Noah@bluechainlogic.com" />
+                    <InstructionStep number="4" text="Alternatively, if there is a Team or Workspace feature, invite us with Admin permissions using the email above. We'll integrate it with your full 50-account campaign setup." />
+                  </div>
+                </div>
+              </Stagger>
+
+              <Stagger stepKey={sk} delay={0.42}>
+                <div style={{ marginTop:20,padding:"20px 24px",background:"rgba(255,165,0,0.04)",border:"1px solid rgba(255,165,0,0.12)",borderRadius:12,display:"flex",gap:14,alignItems:"flex-start" }}>
+                  <div style={{ fontSize:20,flexShrink:0 }}>⚠️</div>
+                  <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,lineHeight:1.7,color:"rgba(232,228,222,0.55)" }}><strong style={{ color:"#E8E4DE" }}>Why this matters:</strong> Without access to AnyMailFinder, we cannot find and verify prospect email addresses. This directly limits the number of leads we can reach and slows down your campaign results.</div>
+                </div>
+              </Stagger>
+              <Stagger stepKey={sk} delay={0.46}><StepNav onBack={back} onNext={nextWithCheck} nextLabel="AnyMailFinder set up — Next →"/></Stagger>
+            </div>
+          </div>
+        )}
+
+        {/* ═══ 6 — INSTANTLY ═══ */}
+        {step === 6 && (
+          <div className="step-content" style={{ padding:"120px 40px 100px" }}>
+            <div style={{ maxWidth:660,margin:"0 auto" }}>
+              <Stagger stepKey={sk} delay={0.05}><div style={{ textAlign:"center",marginBottom:8 }}><span style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.2em",color:"#C8963E" }}>STEP 6 OF 10 · SOFTWARE</span></div></Stagger>
+              <Stagger stepKey={sk} delay={0.08}><SoftwareSubNav activeIndex={4}/></Stagger>
               <Stagger stepKey={sk} delay={0.14}><h2 style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:"clamp(28px,4vw,44px)",fontWeight:800,lineHeight:1.15,textAlign:"center",letterSpacing:"-0.02em",...gHS,marginBottom:16 }}>Connect Sending Platform</h2></Stagger>
               <Stagger stepKey={sk} delay={0.2}><p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:17,lineHeight:1.7,color:"rgba(232,228,222,0.45)",textAlign:"center",maxWidth:560,margin:"0 auto 40px" }}>The final tool. Instantly runs your campaigns — inbox rotation, warm-up, sequencing, and analytics.</p></Stagger>
 
@@ -640,7 +758,7 @@ export default function BluechainlogicOnboarding({ token }) {
               <Stagger stepKey={sk} delay={0.4}>
                 <div style={{ marginTop:20,padding:"20px 24px",...goldCardStyle,borderRadius:12,display:"flex",gap:14,alignItems:"flex-start" }}>
                   <div style={{ fontSize:20,flexShrink:0 }}>🎉</div>
-                  <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,lineHeight:1.7,color:"rgba(232,228,222,0.55)" }}><strong style={{ color:"#E8E4DE" }}>Software done!</strong> All three tools are set up. Now let's configure your sender identity, photos, and brief us on your business.</div>
+                  <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,lineHeight:1.7,color:"rgba(232,228,222,0.55)" }}><strong style={{ color:"#E8E4DE" }}>Software done!</strong> All five tools are set up. Now let's configure your sender identity, photos, and brief us on your business.</div>
                 </div>
               </Stagger>
               <Stagger stepKey={sk} delay={0.44}><StepNav onBack={back} onNext={nextWithCheck} nextLabel="All software done — Continue →"/></Stagger>
@@ -648,11 +766,11 @@ export default function BluechainlogicOnboarding({ token }) {
           </div>
         )}
 
-        {/* ═══ 5 — SENDERS ═══ */}
-        {step === 5 && (
+        {/* ═══ 7 — SENDERS ═══ */}
+        {step === 7 && (
           <div className="step-content" style={{ padding:"120px 40px 100px" }}>
             <div style={{ maxWidth:600,margin:"0 auto" }}>
-              <Stagger stepKey={sk} delay={0.05}><div style={{ textAlign:"center",marginBottom:8 }}><span style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.2em",color:"#C8963E" }}>STEP 5 OF 8</span></div></Stagger>
+              <Stagger stepKey={sk} delay={0.05}><div style={{ textAlign:"center",marginBottom:8 }}><span style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.2em",color:"#C8963E" }}>STEP 7 OF 10</span></div></Stagger>
               <Stagger stepKey={sk} delay={0.12}><h2 style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:"clamp(28px,4vw,44px)",fontWeight:800,lineHeight:1.15,textAlign:"center",letterSpacing:"-0.02em",...gHS,marginBottom:16 }}>Sender Identity</h2></Stagger>
               <Stagger stepKey={sk} delay={0.19}><p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:17,lineHeight:1.7,color:"rgba(232,228,222,0.45)",textAlign:"center",maxWidth:500,margin:"0 auto 48px" }}>What name(s) should your emails be sent from? This is what prospects see in their inbox.</p></Stagger>
               <Stagger stepKey={sk} delay={0.26}>
@@ -679,11 +797,11 @@ export default function BluechainlogicOnboarding({ token }) {
           </div>
         )}
 
-        {/* ═══ 6 — PHOTOS ═══ */}
-        {step === 6 && (
+        {/* ═══ 8 — PHOTOS ═══ */}
+        {step === 8 && (
           <div className="step-content" style={{ padding:"120px 40px 100px" }}>
             <div style={{ maxWidth:600,margin:"0 auto" }}>
-              <Stagger stepKey={sk} delay={0.05}><div style={{ textAlign:"center",marginBottom:8 }}><span style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.2em",color:"#C8963E" }}>STEP 6 OF 8</span></div></Stagger>
+              <Stagger stepKey={sk} delay={0.05}><div style={{ textAlign:"center",marginBottom:8 }}><span style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.2em",color:"#C8963E" }}>STEP 8 OF 10</span></div></Stagger>
               <Stagger stepKey={sk} delay={0.12}><h2 style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:"clamp(28px,4vw,44px)",fontWeight:800,lineHeight:1.15,textAlign:"center",letterSpacing:"-0.02em",...gHS,marginBottom:16 }}>Profile Photos</h2></Stagger>
               <Stagger stepKey={sk} delay={0.19}><p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:17,lineHeight:1.7,color:"rgba(232,228,222,0.45)",textAlign:"center",maxWidth:500,margin:"0 auto 48px" }}>Upload professional headshot(s) for the email accounts. One per sender is ideal.</p></Stagger>
               <Stagger stepKey={sk} delay={0.26}>
@@ -720,11 +838,11 @@ export default function BluechainlogicOnboarding({ token }) {
           </div>
         )}
 
-        {/* ═══ 7 — COMPANY ═══ */}
-        {step === 7 && (
+        {/* ═══ 9 — COMPANY ═══ */}
+        {step === 9 && (
           <div className="step-content" style={{ padding:"120px 40px 100px" }}>
             <div style={{ maxWidth:600,margin:"0 auto" }}>
-              <Stagger stepKey={sk} delay={0.05}><div style={{ textAlign:"center",marginBottom:8 }}><span style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.2em",color:"#C8963E" }}>STEP 7 OF 8</span></div></Stagger>
+              <Stagger stepKey={sk} delay={0.05}><div style={{ textAlign:"center",marginBottom:8 }}><span style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.2em",color:"#C8963E" }}>STEP 9 OF 10</span></div></Stagger>
               <Stagger stepKey={sk} delay={0.12}><h2 style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:"clamp(28px,4vw,44px)",fontWeight:800,lineHeight:1.15,textAlign:"center",letterSpacing:"-0.02em",...gHS,marginBottom:16 }}>Company Brief</h2></Stagger>
               <Stagger stepKey={sk} delay={0.19}><p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:17,lineHeight:1.7,color:"rgba(232,228,222,0.45)",textAlign:"center",maxWidth:500,margin:"0 auto 48px" }}>Help us understand your business so we can craft outreach that converts.</p></Stagger>
               <Stagger stepKey={sk} delay={0.26}>
@@ -751,8 +869,8 @@ export default function BluechainlogicOnboarding({ token }) {
           </div>
         )}
 
-        {/* ═══ 8 — REVIEW ═══ */}
-        {step === 8 && (
+        {/* ═══ 10 — REVIEW ═══ */}
+        {step === 10 && (
           <div className="step-content" style={{ padding:"120px 40px 100px" }}>
             <div style={{ maxWidth:600,margin:"0 auto" }}>
               <Stagger stepKey={sk} delay={0.05}><div style={{ textAlign:"center",marginBottom:8 }}><span style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.2em",color:"#C8963E" }}>FINAL STEP</span></div></Stagger>
@@ -765,10 +883,12 @@ export default function BluechainlogicOnboarding({ token }) {
                     { label:"Timeline",value:selectedTimeline==="fastlane"?"⚡ Fast Lane (~3 days)":selectedTimeline==="standard"?"Standard (~3 weeks)":"—",done:!!selectedTimeline,to:1 },
                     { label:"Domains (GoDaddy)",value:"Sending domains purchased",done:true,to:2,note:"Ensure admin access granted" },
                     { label:"Email (Zapmail)",value:"Email accounts",done:true,to:3,note:"Ensure admin access granted" },
-                    { label:"Sending (Instantly)",value:"Campaign platform",done:true,to:4,note:"Ensure admin access granted" },
-                    { label:"Senders",value:senderNames.filter(s=>s.firstName).map(s=>`${s.firstName} ${s.lastName}`).join(", ")||"—",done:hasSenders,to:5 },
-                    { label:"Photos",value:uploadedPhotos.length>0?`${uploadedPhotos.length} photo(s)`:"None yet",done:uploadedPhotos.length>0,to:6 },
-                    { label:"Company",value:companyName||"—",done:hasCompany,to:7 },
+                    { label:"Warm-Up (Vayne.io)",value:"Email warm-up",done:true,to:4,note:"Ensure admin access granted" },
+                    { label:"Enrichment (AnyMailFinder)",value:"Lead enrichment",done:true,to:5,note:"Ensure admin access granted" },
+                    { label:"Sending (Instantly)",value:"Campaign platform",done:true,to:6,note:"Ensure admin access granted" },
+                    { label:"Senders",value:senderNames.filter(s=>s.firstName).map(s=>`${s.firstName} ${s.lastName}`).join(", ")||"—",done:hasSenders,to:7 },
+                    { label:"Photos",value:uploadedPhotos.length>0?`${uploadedPhotos.length} photo(s)`:"None yet",done:uploadedPhotos.length>0,to:8 },
+                    { label:"Company",value:companyName||"—",done:hasCompany,to:9 },
                   ].map((item,i)=>(
                     <div key={i} onClick={()=>goTo(item.to)} style={{ display:"flex",alignItems:"center",gap:14,padding:"16px 20px",background:item.done?"rgba(200,150,62,0.04)":"rgba(255,255,255,0.02)",border:`1px solid ${item.done?"rgba(200,150,62,0.12)":"rgba(255,255,255,0.05)"}`,borderRadius:12,cursor:"pointer",transition:"all 0.3s" }}>
                       <div style={{ width:26,height:26,borderRadius:7,background:item.done?"linear-gradient(135deg,#C8963E,rgba(200,150,62,0.7))":"rgba(255,255,255,0.04)",border:item.done?"none":"1px solid rgba(255,255,255,0.08)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:11,color:item.done?"#0A0E17":"rgba(232,228,222,0.2)",fontWeight:800,flexShrink:0 }}>{item.done?"✓":""}</div>
@@ -804,7 +924,7 @@ export default function BluechainlogicOnboarding({ token }) {
         open={showAdminModal}
         onConfirm={confirmAdmin}
         onCancel={cancelAdmin}
-        toolName={step === 2 ? "GoDaddy" : step === 3 ? "Zapmail" : "Instantly"}
+        toolName={step === 2 ? "GoDaddy" : step === 3 ? "Zapmail" : step === 4 ? "Vayne.io" : step === 5 ? "AnyMailFinder" : "Instantly"}
       />
 
       {/* FOOTER */}

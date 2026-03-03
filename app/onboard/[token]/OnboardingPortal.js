@@ -161,13 +161,13 @@ function ConfirmModal({ open, onConfirm, onCancel, toolName }) {
           <div style={{ fontSize:40,marginBottom:20 }}>🔑</div>
           <h3 style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:22,fontWeight:800,color:"#E8E4DE",marginBottom:12,lineHeight:1.3 }}>Before we move on...</h3>
           <p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:15,lineHeight:1.7,color:"rgba(232,228,222,0.55)",marginBottom:8 }}>
-            Did you grant us <strong style={{ color:"#E8E4DE" }}>{toolName === "GoDaddy" ? "Delegate Access" : "Admin access"}</strong> on <strong style={{ color:"#C8963E" }}>{toolName}</strong>?
+            Did you {toolName === "Vayne.io" || toolName === "AnyMailFinder" ? "share your" : "grant us"} <strong style={{ color:"#E8E4DE" }}>{toolName === "GoDaddy" ? "Delegate Access" : toolName === "Vayne.io" || toolName === "AnyMailFinder" ? "login credentials" : "Admin access"}</strong> {toolName === "Vayne.io" || toolName === "AnyMailFinder" ? "for" : "on"} <strong style={{ color:"#C8963E" }}>{toolName}</strong>?
           </p>
           <div style={{ padding:"14px 20px",background:"rgba(200,150,62,0.08)",border:"1px solid rgba(200,150,62,0.15)",borderRadius:10,marginBottom:28 }}>
             <code style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:16,fontWeight:700,color:"#C8963E",letterSpacing:"0.01em" }}>Noah@bluechainlogic.com</code>
           </div>
           <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:13,color:"rgba(232,228,222,0.35)",marginBottom:28,lineHeight:1.6 }}>
-            Without admin access we cannot configure your {toolName === "GoDaddy" ? "domains and DNS records" : toolName === "Zapmail" ? "email accounts" : toolName === "Vayne.io" ? "lead provider and deliverability" : toolName === "AnyMailFinder" ? "lead enrichment and email finding" : "campaigns and deliverability"}. This will block your launch.
+            Without {toolName === "Vayne.io" || toolName === "AnyMailFinder" ? "your account credentials" : "admin access"} we cannot configure your {toolName === "GoDaddy" ? "domains and DNS records" : toolName === "Zapmail" ? "email accounts" : toolName === "Vayne.io" ? "lead provider and deliverability" : toolName === "AnyMailFinder" ? "lead enrichment and email finding" : "campaigns and deliverability"}. This will block your launch.
           </div>
           <div style={{ display:"flex",gap:12 }}>
             <button onClick={onCancel} style={{
@@ -515,59 +515,18 @@ export default function BluechainlogicOnboarding({ token }) {
 
               <Stagger stepKey={sk} delay={0.26}>
                 <div className="infra-grid" style={{ display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:20 }}>
-                  {/* 10 Accounts */}
-                  <div className="timeline-card" onClick={()=>setSelectedEmailAccounts(10)} style={{
-                    ...cardStyle,padding:"36px 24px",textAlign:"center",display:"flex",flexDirection:"column",alignItems:"center",
-                    borderColor:selectedEmailAccounts===10?"rgba(200,150,62,0.5)":"rgba(255,255,255,0.04)",
-                    boxShadow:selectedEmailAccounts===10?"0 0 40px rgba(200,150,62,0.08)":"none",
-                    opacity:selectedEmailAccounts&&selectedEmailAccounts!==10?0.45:1,transition:"all 0.4s ease"
-                  }}>
-                    <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:11,fontWeight:700,letterSpacing:"0.18em",color:"rgba(232,228,222,0.25)",marginBottom:20,textTransform:"uppercase" }}>Starter</div>
-                    <div style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:52,fontWeight:800,letterSpacing:"-0.03em",lineHeight:1,color:"rgba(232,228,222,0.5)",marginBottom:8 }}>10</div>
-                    <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,fontWeight:600,color:"rgba(232,228,222,0.35)",marginBottom:20 }}>email accounts</div>
-                    <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:13,color:"rgba(232,228,222,0.3)",lineHeight:1.6 }}>4 domains · Ideal for testing the waters</div>
-                    {selectedEmailAccounts===10&&<div style={{ marginTop:20,padding:"10px 16px",background:"rgba(200,150,62,0.1)",borderRadius:8,fontFamily:"'Instrument Sans', sans-serif",fontSize:13,fontWeight:600,color:"#C8963E",textAlign:"center" }}>✓ Selected</div>}
-                  </div>
-
-                  {/* 30 Accounts */}
-                  <div className="timeline-card" onClick={()=>setSelectedEmailAccounts(30)} style={{
-                    padding:"36px 24px",textAlign:"center",display:"flex",flexDirection:"column",alignItems:"center",position:"relative",overflow:"hidden",cursor:"pointer",
-                    background:"linear-gradient(165deg, rgba(200,150,62,0.08) 0%, rgba(200,150,62,0.03) 40%, rgba(200,150,62,0.06) 100%)",
-                    border: selectedEmailAccounts===30 ? "2px solid rgba(200,150,62,0.6)" : "1px solid rgba(200,150,62,0.25)",
-                    borderRadius:16,
-                    boxShadow: selectedEmailAccounts===30
-                      ? "0 0 50px rgba(200,150,62,0.15), 0 0 100px rgba(200,150,62,0.06), inset 0 1px 0 rgba(200,150,62,0.15)"
-                      : "0 0 30px rgba(200,150,62,0.06), 0 0 60px rgba(200,150,62,0.03), inset 0 1px 0 rgba(200,150,62,0.1)",
-                    opacity:selectedEmailAccounts&&selectedEmailAccounts!==30?0.45:1,
-                    transition:"all 0.4s ease"
-                  }}>
-                    <div style={{ position:"absolute",top:12,right:12,padding:"4px 10px",background:"linear-gradient(135deg,#C8963E,#E0B860)",borderRadius:6,fontFamily:"'Instrument Sans', sans-serif",fontSize:9,fontWeight:700,letterSpacing:"0.1em",color:"#0A0E17",boxShadow:"0 2px 12px rgba(200,150,62,0.3)" }}>POPULAR</div>
-                    <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:11,fontWeight:700,letterSpacing:"0.18em",color:"#C8963E",marginBottom:20,textTransform:"uppercase" }}>Growth</div>
-                    <div style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:52,fontWeight:800,letterSpacing:"-0.03em",lineHeight:1,background:"linear-gradient(135deg, #E8E4DE 0%, #C8963E 50%, #E0B860 100%)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",marginBottom:8 }}>30</div>
-                    <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,fontWeight:600,color:"rgba(232,228,222,0.6)",marginBottom:20 }}>email accounts</div>
-                    <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:13,color:"rgba(232,228,222,0.45)",lineHeight:1.6 }}>10 domains · Best balance of reach & cost</div>
-                    {selectedEmailAccounts===30&&<div style={{ marginTop:20,padding:"10px 16px",background:"rgba(200,150,62,0.2)",borderRadius:8,fontFamily:"'Instrument Sans', sans-serif",fontSize:13,fontWeight:600,color:"#C8963E",textAlign:"center" }}>✓ Selected</div>}
-                  </div>
-
-                  {/* 50 Accounts */}
-                  <div className="timeline-card" onClick={()=>setSelectedEmailAccounts(50)} style={{
-                    ...cardStyle,padding:"36px 24px",textAlign:"center",display:"flex",flexDirection:"column",alignItems:"center",
-                    borderColor:selectedEmailAccounts===50?"rgba(200,150,62,0.5)":"rgba(255,255,255,0.04)",
-                    boxShadow:selectedEmailAccounts===50?"0 0 40px rgba(200,150,62,0.08)":"none",
-                    opacity:selectedEmailAccounts&&selectedEmailAccounts!==50?0.45:1,transition:"all 0.4s ease"
-                  }}>
-                    <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:11,fontWeight:700,letterSpacing:"0.18em",color:"rgba(232,228,222,0.25)",marginBottom:20,textTransform:"uppercase" }}>Scale</div>
-                    <div style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:52,fontWeight:800,letterSpacing:"-0.03em",lineHeight:1,color:"rgba(232,228,222,0.5)",marginBottom:8 }}>50</div>
-                    <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,fontWeight:600,color:"rgba(232,228,222,0.35)",marginBottom:20 }}>email accounts</div>
-                    <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:13,color:"rgba(232,228,222,0.3)",lineHeight:1.6 }}>16 domains · Maximum outreach volume</div>
-                    {selectedEmailAccounts===50&&<div style={{ marginTop:20,padding:"10px 16px",background:"rgba(200,150,62,0.1)",borderRadius:8,fontFamily:"'Instrument Sans', sans-serif",fontSize:13,fontWeight:600,color:"#C8963E",textAlign:"center" }}>✓ Selected</div>}
-                  </div>
-                </div>
-              </Stagger>
-
-              <Stagger stepKey={sk} delay={0.33}>
-                <div style={{ marginTop:24,padding:"16px 20px",background:"rgba(200,150,62,0.04)",border:"1px solid rgba(200,150,62,0.12)",borderRadius:12,textAlign:"center" }}>
-                  <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,lineHeight:1.7,color:"rgba(232,228,222,0.45)" }}>Not sure? Choose the option that was agreed upon during your <strong style={{ color:"#E8E4DE" }}>onboarding call</strong> with your account manager.</div>
+                  {[10, 30, 50].map(n => (
+                    <div key={n} className="timeline-card" onClick={()=>setSelectedEmailAccounts(n)} style={{
+                      ...cardStyle,padding:"40px 24px",textAlign:"center",display:"flex",flexDirection:"column",alignItems:"center",
+                      borderColor:selectedEmailAccounts===n?"rgba(200,150,62,0.5)":"rgba(255,255,255,0.04)",
+                      boxShadow:selectedEmailAccounts===n?"0 0 40px rgba(200,150,62,0.08)":"none",
+                      opacity:selectedEmailAccounts&&selectedEmailAccounts!==n?0.45:1,transition:"all 0.4s ease"
+                    }}>
+                      <div style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:56,fontWeight:800,letterSpacing:"-0.03em",lineHeight:1,color:selectedEmailAccounts===n?"#C8963E":"rgba(232,228,222,0.5)",marginBottom:10,transition:"color 0.3s" }}>{n}</div>
+                      <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:15,fontWeight:600,color:"rgba(232,228,222,0.4)" }}>email accounts</div>
+                      {selectedEmailAccounts===n&&<div style={{ marginTop:20,padding:"10px 16px",background:"rgba(200,150,62,0.1)",borderRadius:8,fontFamily:"'Instrument Sans', sans-serif",fontSize:13,fontWeight:600,color:"#C8963E",textAlign:"center" }}>✓ Selected</div>}
+                    </div>
+                  ))}
                 </div>
               </Stagger>
               <Stagger stepKey={sk} delay={0.36}><StepNav onBack={back} onNext={next} nextDisabled={!selectedEmailAccounts}/></Stagger>
@@ -726,8 +685,8 @@ export default function BluechainlogicOnboarding({ token }) {
                   <div style={{ display:"flex",flexDirection:"column",gap:18 }}>
                     <InstructionStep number="1" text="Go to Vayne.io and create your account using the button above." />
                     <InstructionStep number="2" text='Navigate to the Pricing page and purchase the Starter package.' />
-                    <InstructionStep number="3" text='Once subscribed, go to Settings → Team (or Workspace), click "Invite Member" and add us with Admin permissions:' highlight="Noah@bluechainlogic.com" />
-                    <InstructionStep number="4" text="We'll connect your Zapmail accounts and configure everything to build your sender reputation and lead pipeline." />
+                    <InstructionStep number="3" text='Once your account is set up, share your Vayne.io login credentials (email & password) with us so we can configure everything on your behalf:' highlight="Noah@bluechainlogic.com" />
+                    <InstructionStep number="4" text="We'll log in, connect your Zapmail accounts, and configure everything to build your sender reputation and lead pipeline." />
                   </div>
                 </div>
               </Stagger>
@@ -735,7 +694,7 @@ export default function BluechainlogicOnboarding({ token }) {
               <Stagger stepKey={sk} delay={0.36}>
                 <div style={{ marginTop:20,padding:"20px 24px",background:"rgba(255,165,0,0.04)",border:"1px solid rgba(255,165,0,0.12)",borderRadius:12,display:"flex",gap:14,alignItems:"flex-start" }}>
                   <div style={{ fontSize:20,flexShrink:0 }}>⚠️</div>
-                  <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,lineHeight:1.7,color:"rgba(232,228,222,0.55)" }}><strong style={{ color:"#E8E4DE" }}>Why this matters:</strong> Without admin access to Vayne.io, we cannot configure your lead provider and email warm-up. Poor warm-up means poor deliverability — your emails will land in spam instead of the inbox.</div>
+                  <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,lineHeight:1.7,color:"rgba(232,228,222,0.55)" }}><strong style={{ color:"#E8E4DE" }}>Why this matters:</strong> Without access to your Vayne.io account, we cannot configure your lead provider and email warm-up. Poor warm-up means poor deliverability — your emails will land in spam instead of the inbox.</div>
                 </div>
               </Stagger>
               <Stagger stepKey={sk} delay={0.4}><StepNav onBack={back} onNext={nextWithCheck} nextLabel="Vayne.io set up — Next →"/></Stagger>
@@ -764,12 +723,10 @@ export default function BluechainlogicOnboarding({ token }) {
                     <div style={{ padding:"4px 12px",background:"linear-gradient(135deg,#C8963E,#E0B860)",borderRadius:6,fontFamily:"'Instrument Sans', sans-serif",fontSize:10,fontWeight:700,letterSpacing:"0.1em",color:"#0A0E17" }}>10 ACCOUNTS</div>
                     <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,fontWeight:600,color:"#E8E4DE" }}>2,000 Credits / Month</div>
                   </div>
-                  <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:13,color:"rgba(232,228,222,0.4)",lineHeight:1.7,marginBottom:20 }}>With <strong style={{ color:"#E8E4DE" }}>10 email accounts</strong>, the <strong style={{ color:"#C8963E" }}>2,000 credits per month</strong> plan is the right fit to keep your lead pipeline full.</div>
                   <div style={{ display:"flex",flexDirection:"column",gap:18 }}>
                     <InstructionStep number="1" text="Click the button above to go to AnyMailFinder and create your account." />
                     <InstructionStep number="2" text='Navigate to the Pricing / Plans page and purchase the 2,000 credits per month plan.' />
-                    <InstructionStep number="3" text='Once subscribed, go to your Account Settings → API Keys, copy your API key and send it to us at:' highlight="Noah@bluechainlogic.com" />
-                    <InstructionStep number="4" text="Alternatively, if there is a Team or Workspace feature, invite us with Admin permissions using the email above. We'll integrate it with your campaign infrastructure." />
+                    <InstructionStep number="3" text='Once your account is set up, share your AnyMailFinder login credentials (email & password) with us so we can manage your enrichment setup:' highlight="Noah@bluechainlogic.com" />
                   </div>
                 </div>
               </Stagger>
@@ -783,12 +740,10 @@ export default function BluechainlogicOnboarding({ token }) {
                     <div style={{ padding:"4px 12px",background:"linear-gradient(135deg,#C8963E,#E0B860)",borderRadius:6,fontFamily:"'Instrument Sans', sans-serif",fontSize:10,fontWeight:700,letterSpacing:"0.1em",color:"#0A0E17" }}>30 ACCOUNTS</div>
                     <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,fontWeight:600,color:"#E8E4DE" }}>5,000 Credits / Month</div>
                   </div>
-                  <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:13,color:"rgba(232,228,222,0.4)",lineHeight:1.7,marginBottom:20 }}>With <strong style={{ color:"#E8E4DE" }}>30 email accounts</strong>, you need the <strong style={{ color:"#C8963E" }}>5,000 credits per month</strong> plan on AnyMailFinder to keep your lead pipeline full.</div>
                   <div style={{ display:"flex",flexDirection:"column",gap:18 }}>
                     <InstructionStep number="1" text="Click the button above to go to AnyMailFinder and create your account." />
                     <InstructionStep number="2" text='Navigate to the Pricing / Plans page and purchase the 5,000 credits per month plan.' />
-                    <InstructionStep number="3" text='Once subscribed, go to your Account Settings → API Keys, copy your API key and send it to us at:' highlight="Noah@bluechainlogic.com" />
-                    <InstructionStep number="4" text="Alternatively, if there is a Team or Workspace feature, invite us with Admin permissions using the email above. We'll integrate it with your campaign infrastructure." />
+                    <InstructionStep number="3" text='Once your account is set up, share your AnyMailFinder login credentials (email & password) with us so we can manage your enrichment setup:' highlight="Noah@bluechainlogic.com" />
                   </div>
                 </div>
               </Stagger>
@@ -802,12 +757,10 @@ export default function BluechainlogicOnboarding({ token }) {
                     <div style={{ padding:"4px 12px",background:"linear-gradient(135deg,#C8963E,#E0B860)",borderRadius:6,fontFamily:"'Instrument Sans', sans-serif",fontSize:10,fontWeight:700,letterSpacing:"0.1em",color:"#0A0E17" }}>50 ACCOUNTS</div>
                     <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,fontWeight:600,color:"#E8E4DE" }}>10,000 Credits / Month</div>
                   </div>
-                  <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:13,color:"rgba(232,228,222,0.4)",lineHeight:1.7,marginBottom:20 }}>With <strong style={{ color:"#E8E4DE" }}>50 email accounts</strong>, you need the <strong style={{ color:"#C8963E" }}>10,000 credits per month</strong> plan on AnyMailFinder to handle the higher outreach volume.</div>
                   <div style={{ display:"flex",flexDirection:"column",gap:18 }}>
                     <InstructionStep number="1" text="Click the button above to go to AnyMailFinder and create your account." />
                     <InstructionStep number="2" text='Navigate to the Pricing / Plans page and purchase the 10,000 credits per month plan.' />
-                    <InstructionStep number="3" text='Once subscribed, go to your Account Settings → API Keys, copy your API key and send it to us at:' highlight="Noah@bluechainlogic.com" />
-                    <InstructionStep number="4" text="Alternatively, if there is a Team or Workspace feature, invite us with Admin permissions using the email above. We'll integrate it with your full 50-account campaign setup." />
+                    <InstructionStep number="3" text='Once your account is set up, share your AnyMailFinder login credentials (email & password) with us so we can manage your enrichment setup:' highlight="Noah@bluechainlogic.com" />
                   </div>
                 </div>
               </Stagger>
@@ -816,7 +769,7 @@ export default function BluechainlogicOnboarding({ token }) {
               <Stagger stepKey={sk} delay={0.42}>
                 <div style={{ marginTop:20,padding:"20px 24px",background:"rgba(255,165,0,0.04)",border:"1px solid rgba(255,165,0,0.12)",borderRadius:12,display:"flex",gap:14,alignItems:"flex-start" }}>
                   <div style={{ fontSize:20,flexShrink:0 }}>⚠️</div>
-                  <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,lineHeight:1.7,color:"rgba(232,228,222,0.55)" }}><strong style={{ color:"#E8E4DE" }}>Why this matters:</strong> Without access to AnyMailFinder, we cannot find and verify prospect email addresses. This directly limits the number of leads we can reach and slows down your campaign results.</div>
+                  <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,lineHeight:1.7,color:"rgba(232,228,222,0.55)" }}><strong style={{ color:"#E8E4DE" }}>Why this matters:</strong> Without access to your AnyMailFinder account, we cannot find and verify prospect email addresses. This directly limits the number of leads we can reach and slows down your campaign results.</div>
                 </div>
               </Stagger>
               <Stagger stepKey={sk} delay={0.42}><StepNav onBack={back} onNext={nextWithCheck} nextLabel="AnyMailFinder set up — Next →"/></Stagger>

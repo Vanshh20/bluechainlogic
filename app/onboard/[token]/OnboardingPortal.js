@@ -617,7 +617,7 @@ export default function BluechainlogicOnboarding({ token }) {
               <Stagger stepKey={sk} delay={0.2}><p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:17,lineHeight:1.7,color:"rgba(232,228,222,0.45)",textAlign:"center",maxWidth:600,margin:"0 auto 40px" }}>Vayne.io warms up your email accounts to build sender reputation and maximize deliverability. Your plan depends on how many email accounts you purchased on Zapmail.</p></Stagger>
 
               <Stagger stepKey={sk} delay={0.26}>
-                <a href="https://vayne.io" target="_blank" rel="noopener noreferrer" style={{ display:"block",padding:"16px 24px",fontFamily:"'Instrument Sans', sans-serif",fontSize:15,fontWeight:600,color:"#0A0E17",background:"linear-gradient(135deg,#E05252,#F47A7A)",borderRadius:10,textDecoration:"none",textAlign:"center",boxShadow:"0 4px 20px rgba(224,82,82,0.2)",marginBottom:32 }}>Create an Account on Vayne.io →</a>
+                <a href="https://www.vayne.io/en?fpr=noah94" target="_blank" rel="noopener noreferrer" style={{ display:"block",padding:"16px 24px",fontFamily:"'Instrument Sans', sans-serif",fontSize:15,fontWeight:600,color:"#0A0E17",background:"linear-gradient(135deg,#E05252,#F47A7A)",borderRadius:10,textDecoration:"none",textAlign:"center",boxShadow:"0 4px 20px rgba(224,82,82,0.2)",marginBottom:32 }}>Create an Account on Vayne.io →</a>
               </Stagger>
 
               {/* ── 30 Email Accounts → Freelancer Plan ── */}

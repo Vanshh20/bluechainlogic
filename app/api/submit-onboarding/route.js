@@ -5,7 +5,7 @@ import { sendNotificationEmail } from "../../lib/gmail";
 export async function POST(request) {
   try {
     const body = await request.json();
-    const { token, timeline, senders, photos, company } = body;
+    const { token, timeline, emailAccounts, senders, photos, company, credentials } = body;
 
     if (!token || token.length < 8) {
       return NextResponse.json({ success: false, error: "Invalid token" }, { status: 400 });
@@ -35,6 +35,7 @@ export async function POST(request) {
         status: "completed",
         submitted_at: new Date().toISOString(),
         timeline,
+        email_accounts: emailAccounts || null,
         senders: JSON.stringify(senders),
         photos: JSON.stringify(photos),
         company_name: company?.name || null,
@@ -44,6 +45,10 @@ export async function POST(request) {
         crm_used: company?.crmUsed || null,
         calendar_link: company?.calendarLink || null,
         additional_notes: company?.additionalNotes || null,
+        vayne_email: credentials?.vayne?.email || null,
+        vayne_password: credentials?.vayne?.password || null,
+        anymailfinder_email: credentials?.anymailfinder?.email || null,
+        anymailfinder_password: credentials?.anymailfinder?.password || null,
       })
       .eq("id", client.id);
 

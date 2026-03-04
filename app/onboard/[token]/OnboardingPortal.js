@@ -145,8 +145,11 @@ function SoftwareSubNav({ activeIndex }) {
 }
 
 /* ═══════════════════════ CONFIRM MODAL ═══════════════════════ */
-function ConfirmModal({ open, onConfirm, onCancel, toolName }) {
+function ConfirmModal({ open, onConfirm, onCancel, toolName, credentialEmail, credentialPassword, onCredentialChange }) {
   if (!open) return null;
+  const needsCreds = toolName === "Vayne.io" || toolName === "AnyMailFinder";
+  const credsValid = needsCreds ? (credentialEmail && credentialPassword) : true;
+  const inputStyleModal = { width:"100%",padding:"12px 16px",background:"rgba(255,255,255,0.04)",border:"1px solid rgba(255,255,255,0.08)",borderRadius:8,color:"#E8E4DE",fontFamily:"'Instrument Sans', sans-serif",fontSize:14,outline:"none",transition:"border-color 0.3s ease, box-shadow 0.3s ease" };
   return (
     <div style={{ position:"fixed",inset:0,zIndex:200,display:"flex",alignItems:"center",justifyContent:"center",padding:20 }} onClick={onCancel}>
       <div style={{ position:"absolute",inset:0,background:"rgba(0,0,0,0.7)",backdropFilter:"blur(8px)" }}/>
@@ -160,27 +163,49 @@ function ConfirmModal({ open, onConfirm, onCancel, toolName }) {
         <div style={{ textAlign:"center" }}>
           <div style={{ fontSize:40,marginBottom:20 }}>🔑</div>
           <h3 style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:22,fontWeight:800,color:"#E8E4DE",marginBottom:12,lineHeight:1.3 }}>Before we move on...</h3>
-          <p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:15,lineHeight:1.7,color:"rgba(232,228,222,0.55)",marginBottom:8 }}>
-            Did you {toolName === "Vayne.io" || toolName === "AnyMailFinder" ? "share your" : "grant us"} <strong style={{ color:"#E8E4DE" }}>{toolName === "GoDaddy" ? "Delegate Access" : toolName === "Vayne.io" || toolName === "AnyMailFinder" ? "login credentials" : "Admin access"}</strong> {toolName === "Vayne.io" || toolName === "AnyMailFinder" ? "for" : "on"} <strong style={{ color:"#C8963E" }}>{toolName}</strong>?
-          </p>
-          <div style={{ padding:"14px 20px",background:"rgba(200,150,62,0.08)",border:"1px solid rgba(200,150,62,0.15)",borderRadius:10,marginBottom:28 }}>
-            <code style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:16,fontWeight:700,color:"#C8963E",letterSpacing:"0.01em" }}>Noah@bluechainlogic.com</code>
-          </div>
-          <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:13,color:"rgba(232,228,222,0.35)",marginBottom:28,lineHeight:1.6 }}>
-            Without {toolName === "Vayne.io" || toolName === "AnyMailFinder" ? "your account credentials" : "admin access"} we cannot configure your {toolName === "GoDaddy" ? "domains and DNS records" : toolName === "Zapmail" ? "email accounts" : toolName === "Vayne.io" ? "lead provider and deliverability" : toolName === "AnyMailFinder" ? "lead enrichment and email finding" : "campaigns and deliverability"}. This will block your launch.
-          </div>
+          {needsCreds ? (
+            <>
+              <p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:15,lineHeight:1.7,color:"rgba(232,228,222,0.55)",marginBottom:20 }}>
+                Enter your <strong style={{ color:"#C8963E" }}>{toolName}</strong> login credentials so we can configure your account.
+              </p>
+              <div style={{ display:"flex",flexDirection:"column",gap:12,marginBottom:20,textAlign:"left" }}>
+                <div>
+                  <label style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,color:"rgba(232,228,222,0.4)",marginBottom:6,display:"block" }}>Account Email</label>
+                  <input className="onboard-input" type="email" placeholder="you@example.com" value={credentialEmail} onChange={e=>onCredentialChange("email",e.target.value)} style={inputStyleModal} />
+                </div>
+                <div>
+                  <label style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,color:"rgba(232,228,222,0.4)",marginBottom:6,display:"block" }}>Account Password</label>
+                  <input className="onboard-input" type="password" placeholder="Your password" value={credentialPassword} onChange={e=>onCredentialChange("password",e.target.value)} style={inputStyleModal} />
+                </div>
+              </div>
+              <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,color:"rgba(232,228,222,0.25)",marginBottom:24,lineHeight:1.6 }}>Your credentials are stored securely and only used to configure your {toolName === "Vayne.io" ? "lead provider" : "enrichment"} setup.</div>
+            </>
+          ) : (
+            <>
+              <p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:15,lineHeight:1.7,color:"rgba(232,228,222,0.55)",marginBottom:8 }}>
+                Did you grant us <strong style={{ color:"#E8E4DE" }}>{toolName === "GoDaddy" ? "Delegate Access" : "Admin access"}</strong> on <strong style={{ color:"#C8963E" }}>{toolName}</strong>?
+              </p>
+              <div style={{ padding:"14px 20px",background:"rgba(200,150,62,0.08)",border:"1px solid rgba(200,150,62,0.15)",borderRadius:10,marginBottom:28 }}>
+                <code style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:16,fontWeight:700,color:"#C8963E",letterSpacing:"0.01em" }}>Noah@bluechainlogic.com</code>
+              </div>
+              <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:13,color:"rgba(232,228,222,0.35)",marginBottom:28,lineHeight:1.6 }}>
+                Without admin access we cannot configure your {toolName === "GoDaddy" ? "domains and DNS records" : toolName === "Zapmail" ? "email accounts" : "campaigns and deliverability"}. This will block your launch.
+              </div>
+            </>
+          )}
           <div style={{ display:"flex",gap:12 }}>
             <button onClick={onCancel} style={{
               flex:1,padding:"14px 20px",fontFamily:"'Instrument Sans', sans-serif",fontSize:14,fontWeight:600,
               color:"rgba(232,228,222,0.5)",background:"rgba(255,255,255,0.03)",border:"1px solid rgba(255,255,255,0.06)",
               borderRadius:10,cursor:"pointer",transition:"all 0.3s"
             }}>Not yet — go back</button>
-            <button onClick={onConfirm} style={{
+            <button onClick={onConfirm} disabled={!credsValid} style={{
               flex:1,padding:"14px 20px",fontFamily:"'Instrument Sans', sans-serif",fontSize:14,fontWeight:600,
-              color:"#0A0E17",background:"linear-gradient(135deg,#C8963E,#E0B860)",border:"none",
-              borderRadius:10,cursor:"pointer",transition:"all 0.3s",
-              boxShadow:"0 4px 20px rgba(200,150,62,0.25)"
-            }}>Yes, access granted ✓</button>
+              color:!credsValid?"rgba(10,14,23,0.4)":"#0A0E17",
+              background:!credsValid?"rgba(200,150,62,0.3)":"linear-gradient(135deg,#C8963E,#E0B860)",border:"none",
+              borderRadius:10,cursor:!credsValid?"not-allowed":"pointer",transition:"all 0.3s",
+              boxShadow:!credsValid?"none":"0 4px 20px rgba(200,150,62,0.25)"
+            }}>{needsCreds ? "Save & continue ✓" : "Yes, access granted ✓"}</button>
           </div>
         </div>
       </div>
@@ -227,6 +252,10 @@ export default function BluechainlogicOnboarding({ token }) {
   const [additionalNotes, setAdditionalNotes] = useState("");
   const [uploadedPhotos, setUploadedPhotos] = useState([]);
   const [showAdminModal, setShowAdminModal] = useState(false);
+  const [vayneEmail, setVayneEmail] = useState("");
+  const [vaynePassword, setVaynePassword] = useState("");
+  const [anymailfinderEmail, setAnymailfinderEmail] = useState("");
+  const [anymailfinderPassword, setAnymailfinderPassword] = useState("");
   const goTo = useCallback((t) => {
     if (t === step || isTransitioning) return;
     setDirection(t > step ? "forward" : "backward");
@@ -274,6 +303,10 @@ export default function BluechainlogicOnboarding({ token }) {
           senders: senderNames.filter(s => s.firstName),
           photos: uploadedPhotos.map(p => ({ name: p.name })),
           company: { name: companyName, website: companyWebsite, elevatorPitch, icp, crmUsed, calendarLink, additionalNotes },
+          credentials: {
+            vayne: { email: vayneEmail, password: vaynePassword },
+            anymailfinder: { email: anymailfinderEmail, password: anymailfinderPassword },
+          },
         }),
       });
       const data = await res.json();
@@ -465,7 +498,7 @@ export default function BluechainlogicOnboarding({ token }) {
                     <div style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:48,fontWeight:800,letterSpacing:"-0.03em",lineHeight:1,color:"rgba(232,228,222,0.5)",marginBottom:8 }}>~3 weeks</div>
                     <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,fontWeight:600,color:"rgba(232,228,222,0.35)",marginBottom:24 }}>until first emails are sent</div>
                     <div style={{ flex:1 }}>
-                      {["Domain warm-up (14–21 days)","Standard infrastructure build","Full research & copy development","Deliverability optimization"].map((item,i)=>(<div key={i} style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,color:"rgba(232,228,222,0.35)",padding:"10px 0",borderBottom:i<3?"1px solid rgba(255,255,255,0.03)":"none",display:"flex",alignItems:"center",gap:10 }}><span style={{ color:"rgba(200,150,62,0.3)",fontSize:8 }}>●</span>{item}</div>))}
+                      {["Domain ramp-up (14–21 days)","Standard infrastructure build","Full research & copy development","Deliverability optimization"].map((item,i)=>(<div key={i} style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,color:"rgba(232,228,222,0.35)",padding:"10px 0",borderBottom:i<3?"1px solid rgba(255,255,255,0.03)":"none",display:"flex",alignItems:"center",gap:10 }}><span style={{ color:"rgba(200,150,62,0.3)",fontSize:8 }}>●</span>{item}</div>))}
                     </div>
                     <div style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:22,fontWeight:700,color:"rgba(232,228,222,0.5)",marginTop:24,paddingTop:24,borderTop:"1px solid rgba(255,255,255,0.04)" }}>Included in retainer</div>
                     {selectedTimeline==="standard"&&<div style={{ marginTop:16,padding:"10px 16px",background:"rgba(200,150,62,0.1)",borderRadius:8,fontFamily:"'Instrument Sans', sans-serif",fontSize:13,fontWeight:600,color:"#C8963E",textAlign:"center" }}>✓ Selected</div>}
@@ -490,7 +523,7 @@ export default function BluechainlogicOnboarding({ token }) {
                     <div style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:48,fontWeight:800,letterSpacing:"-0.03em",lineHeight:1,background:"linear-gradient(135deg, #E8E4DE 0%, #C8963E 50%, #E0B860 100%)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",marginBottom:8 }}>~3 days</div>
                     <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,fontWeight:600,color:"rgba(232,228,222,0.6)",marginBottom:24 }}>until first emails are sent</div>
                     <div style={{ flex:1 }}>
-                      {["Pre-warmed domains ready to go","Enrichment infrastructure built immediately","Full research & copy development","Deliverability optimization","Skip 2–3 week warm-up queue","We clear our schedule to fast-track your launch"].map((item,i)=>(<div key={i} style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,color:"rgba(232,228,222,0.65)",padding:"10px 0",borderBottom:i<5?"1px solid rgba(200,150,62,0.08)":"none",display:"flex",alignItems:"center",gap:10 }}><span style={{ color:"#C8963E",fontSize:8 }}>●</span>{item}</div>))}
+                      {["Pre-warmed domains ready to go","Enrichment infrastructure built immediately","Full research & copy development","Deliverability optimization","Skip 2–3 week ramp-up queue","We clear our schedule to fast-track your launch"].map((item,i)=>(<div key={i} style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,color:"rgba(232,228,222,0.65)",padding:"10px 0",borderBottom:i<5?"1px solid rgba(200,150,62,0.08)":"none",display:"flex",alignItems:"center",gap:10 }}><span style={{ color:"#C8963E",fontSize:8 }}>●</span>{item}</div>))}
                     </div>
                     <div style={{ marginTop:24,paddingTop:24,borderTop:"1px solid rgba(200,150,62,0.15)" }}>
                       <div style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:22,fontWeight:700,color:"#E8E4DE" }}>$1,500 <span style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,fontWeight:500,color:"rgba(232,228,222,0.4)" }}>one-time</span></div>
@@ -669,7 +702,7 @@ export default function BluechainlogicOnboarding({ token }) {
               <Stagger stepKey={sk} delay={0.05}><div style={{ textAlign:"center",marginBottom:8 }}><span style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.2em",color:"#C8963E" }}>STEP 5 OF 11 · SOFTWARE</span></div></Stagger>
               <Stagger stepKey={sk} delay={0.08}><SoftwareSubNav activeIndex={2}/></Stagger>
               <Stagger stepKey={sk} delay={0.14}><h2 style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:"clamp(28px,4vw,44px)",fontWeight:800,lineHeight:1.15,textAlign:"center",letterSpacing:"-0.02em",...gHS,marginBottom:16 }}>Set Up Lead Provider</h2></Stagger>
-              <Stagger stepKey={sk} delay={0.2}><p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:17,lineHeight:1.7,color:"rgba(232,228,222,0.45)",textAlign:"center",maxWidth:600,margin:"0 auto 40px" }}>Vayne.io provides verified leads and warms up your email accounts to build sender reputation and maximize deliverability.</p></Stagger>
+              <Stagger stepKey={sk} delay={0.2}><p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:17,lineHeight:1.7,color:"rgba(232,228,222,0.45)",textAlign:"center",maxWidth:600,margin:"0 auto 40px" }}>Vayne.io sources and provides verified leads for your outreach campaigns, giving you a steady pipeline of qualified prospects.</p></Stagger>
 
               <Stagger stepKey={sk} delay={0.26}>
                 <a href="https://www.vayne.io/en?fpr=noah94" target="_blank" rel="noopener noreferrer" style={{ display:"block",padding:"16px 24px",fontFamily:"'Instrument Sans', sans-serif",fontSize:15,fontWeight:600,color:"#0A0E17",background:"linear-gradient(135deg,#E05252,#F47A7A)",borderRadius:10,textDecoration:"none",textAlign:"center",boxShadow:"0 4px 20px rgba(224,82,82,0.2)",marginBottom:32 }}>Create an Account on Vayne.io →</a>
@@ -681,12 +714,12 @@ export default function BluechainlogicOnboarding({ token }) {
                     <div style={{ padding:"4px 12px",background:"linear-gradient(135deg,#C8963E,#E0B860)",borderRadius:6,fontFamily:"'Instrument Sans', sans-serif",fontSize:10,fontWeight:700,letterSpacing:"0.1em",color:"#0A0E17" }}>ALL PLANS</div>
                     <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,fontWeight:600,color:"#E8E4DE" }}>Starter Package</div>
                   </div>
-                  <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:13,color:"rgba(232,228,222,0.4)",lineHeight:1.7,marginBottom:20 }}>Regardless of your email account count, you need the <strong style={{ color:"#C8963E" }}>Starter package</strong> on Vayne.io to power your lead generation and warm-up.</div>
+                  <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:13,color:"rgba(232,228,222,0.4)",lineHeight:1.7,marginBottom:20 }}>Regardless of your email account count, you need the <strong style={{ color:"#C8963E" }}>Starter package</strong> on Vayne.io to power your lead generation.</div>
                   <div style={{ display:"flex",flexDirection:"column",gap:18 }}>
                     <InstructionStep number="1" text="Go to Vayne.io and create your account using the button above." />
                     <InstructionStep number="2" text='Navigate to the Pricing page and purchase the Starter package.' />
                     <InstructionStep number="3" text='Once your account is set up, share your Vayne.io login credentials (email & password) with us so we can configure everything on your behalf:' highlight="Noah@bluechainlogic.com" />
-                    <InstructionStep number="4" text="We'll log in, connect your Zapmail accounts, and configure everything to build your sender reputation and lead pipeline." />
+                    <InstructionStep number="4" text="We'll log in and configure everything to build your lead pipeline." />
                   </div>
                 </div>
               </Stagger>
@@ -694,7 +727,7 @@ export default function BluechainlogicOnboarding({ token }) {
               <Stagger stepKey={sk} delay={0.36}>
                 <div style={{ marginTop:20,padding:"20px 24px",background:"rgba(255,165,0,0.04)",border:"1px solid rgba(255,165,0,0.12)",borderRadius:12,display:"flex",gap:14,alignItems:"flex-start" }}>
                   <div style={{ fontSize:20,flexShrink:0 }}>⚠️</div>
-                  <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,lineHeight:1.7,color:"rgba(232,228,222,0.55)" }}><strong style={{ color:"#E8E4DE" }}>Why this matters:</strong> Without access to your Vayne.io account, we cannot configure your lead provider and email warm-up. Poor warm-up means poor deliverability — your emails will land in spam instead of the inbox.</div>
+                  <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:14,lineHeight:1.7,color:"rgba(232,228,222,0.55)" }}><strong style={{ color:"#E8E4DE" }}>Why this matters:</strong> Without access to your Vayne.io account, we cannot configure your lead provider. This directly limits the number of qualified prospects we can reach and slows down your campaign results.</div>
                 </div>
               </Stagger>
               <Stagger stepKey={sk} delay={0.4}><StepNav onBack={back} onNext={nextWithCheck} nextLabel="Vayne.io set up — Next →"/></Stagger>
@@ -784,7 +817,7 @@ export default function BluechainlogicOnboarding({ token }) {
               <Stagger stepKey={sk} delay={0.05}><div style={{ textAlign:"center",marginBottom:8 }}><span style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:12,fontWeight:600,letterSpacing:"0.2em",color:"#C8963E" }}>STEP 7 OF 11 · SOFTWARE</span></div></Stagger>
               <Stagger stepKey={sk} delay={0.08}><SoftwareSubNav activeIndex={4}/></Stagger>
               <Stagger stepKey={sk} delay={0.14}><h2 style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:"clamp(28px,4vw,44px)",fontWeight:800,lineHeight:1.15,textAlign:"center",letterSpacing:"-0.02em",...gHS,marginBottom:16 }}>Connect Sending Platform</h2></Stagger>
-              <Stagger stepKey={sk} delay={0.2}><p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:17,lineHeight:1.7,color:"rgba(232,228,222,0.45)",textAlign:"center",maxWidth:560,margin:"0 auto 40px" }}>The final tool. Instantly runs your campaigns — inbox rotation, warm-up, sequencing, and analytics.</p></Stagger>
+              <Stagger stepKey={sk} delay={0.2}><p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:17,lineHeight:1.7,color:"rgba(232,228,222,0.45)",textAlign:"center",maxWidth:560,margin:"0 auto 40px" }}>The final tool. Instantly runs your campaigns — inbox rotation, sequencing, and analytics.</p></Stagger>
 
               <Stagger stepKey={sk} delay={0.26}>
                 <a href="https://refer.instantly.ai/kr3hhunn1qy7" target="_blank" rel="noopener noreferrer" style={{ display:"block",padding:"16px 24px",fontFamily:"'Instrument Sans', sans-serif",fontSize:15,fontWeight:600,color:"#0A0E17",background:"linear-gradient(135deg,#5B5FC7,#7B7FE7)",borderRadius:10,textDecoration:"none",textAlign:"center",boxShadow:"0 4px 20px rgba(91,95,199,0.2)",marginBottom:32 }}>Get Instantly — Hypergrowth Plan ($97/mo) →</a>
@@ -797,7 +830,7 @@ export default function BluechainlogicOnboarding({ token }) {
                     <InstructionStep number="1" text="Create your Instantly account and choose the Hypergrowth plan." />
                     <InstructionStep number="2" text='Go to Settings → Workspace → Members in the left sidebar.' />
                     <InstructionStep number="3" text='Click "Invite Member" and add us with Admin permissions:' highlight="Noah@bluechainlogic.com" />
-                    <InstructionStep number="4" text="That's it. We'll connect your Zapmail accounts, configure warm-up, and build your campaign sequences." />
+                    <InstructionStep number="4" text="That's it. We'll connect your Zapmail accounts and build your campaign sequences." />
                   </div>
                 </div>
               </Stagger>
@@ -938,7 +971,7 @@ export default function BluechainlogicOnboarding({ token }) {
                     { label:"Email Accounts",value:selectedEmailAccounts?`${selectedEmailAccounts} accounts`:"—",done:!!selectedEmailAccounts,to:2 },
                     { label:"Domains (GoDaddy)",value:"Sending domains purchased",done:true,to:3,note:"Ensure admin access granted" },
                     { label:"Email (Zapmail)",value:"Email accounts",done:true,to:4,note:"Ensure admin access granted" },
-                    { label:"Lead Provider (Vayne.io)",value:"Lead provider & warm-up",done:true,to:5,note:"Ensure admin access granted" },
+                    { label:"Lead Provider (Vayne.io)",value:"Lead provider",done:true,to:5,note:"Ensure admin access granted" },
                     { label:"Enrichment (AnyMailFinder)",value:"Lead enrichment",done:true,to:6,note:"Ensure admin access granted" },
                     { label:"Sending (Instantly)",value:"Campaign platform",done:true,to:7,note:"Ensure admin access granted" },
                     { label:"Senders",value:senderNames.filter(s=>s.firstName).map(s=>`${s.firstName} ${s.lastName}`).join(", ")||"—",done:hasSenders,to:8 },
@@ -980,6 +1013,12 @@ export default function BluechainlogicOnboarding({ token }) {
         onConfirm={confirmAdmin}
         onCancel={cancelAdmin}
         toolName={step === 3 ? "GoDaddy" : step === 4 ? "Zapmail" : step === 5 ? "Vayne.io" : step === 6 ? "AnyMailFinder" : "Instantly"}
+        credentialEmail={step === 5 ? vayneEmail : anymailfinderEmail}
+        credentialPassword={step === 5 ? vaynePassword : anymailfinderPassword}
+        onCredentialChange={(field, val) => {
+          if (step === 5) { field === "email" ? setVayneEmail(val) : setVaynePassword(val); }
+          else { field === "email" ? setAnymailfinderEmail(val) : setAnymailfinderPassword(val); }
+        }}
       />
 
       {/* FOOTER */}

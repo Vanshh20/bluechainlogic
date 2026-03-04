@@ -42,11 +42,28 @@ CREATE TABLE onboarding_clients (
   icp TEXT,
   crm_used TEXT,
   calendar_link TEXT,
-  additional_notes TEXT
+  additional_notes TEXT,
+  email_accounts INTEGER,
+  vayne_email TEXT,
+  vayne_password TEXT,
+  anymailfinder_email TEXT,
+  anymailfinder_password TEXT
 );
 
 -- Index for fast token lookups
 CREATE INDEX idx_onboarding_token ON onboarding_clients (token);
+```
+
+### Migration (if table already exists)
+Run this to add the new columns:
+
+```sql
+ALTER TABLE onboarding_clients
+  ADD COLUMN IF NOT EXISTS email_accounts INTEGER,
+  ADD COLUMN IF NOT EXISTS vayne_email TEXT,
+  ADD COLUMN IF NOT EXISTS vayne_password TEXT,
+  ADD COLUMN IF NOT EXISTS anymailfinder_email TEXT,
+  ADD COLUMN IF NOT EXISTS anymailfinder_password TEXT;
 ```
 
 ### Get your keys

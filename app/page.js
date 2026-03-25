@@ -504,8 +504,9 @@ export default function BluechainlogicLanding() {
 
           .bl-marquee-text{font-size:13px!important;gap:32px!important}
 
-          .bl-video-section{padding:60px 20px!important}
-          .bl-video-grid{grid-template-columns:1fr!important}
+          .bl-founder-section{padding:60px 20px!important}
+          .bl-founder-grid{grid-template-columns:1fr!important;gap:32px!important;text-align:center;justify-items:center}
+          .bl-founder-grid>div:first-child{max-width:160px}
         }
 
         @media(max-width:480px){
@@ -604,20 +605,34 @@ export default function BluechainlogicLanding() {
         </section>
       </div>
 
-      {/* ═══ VIDEO ═══ */}
-      <section className="bl-section bl-section-y" style={{ padding:"40px 40px 120px" }}>
-        <div style={{ maxWidth:800,margin:"0 auto" }}>
-          <FadeIn>
-            <div style={{ position:"relative",width:"100%",paddingBottom:"56.25%",borderRadius:16,overflow:"hidden",background:"rgba(255,255,255,0.03)",border:"1px solid rgba(255,255,255,0.06)",cursor:"pointer" }}>
-              <div style={{ position:"absolute",inset:0,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",background:"linear-gradient(135deg,rgba(13,27,42,0.95),rgba(10,14,23,0.98))" }}>
-                <div style={{ width:72,height:72,borderRadius:"50%",background:"rgba(200,150,62,0.15)",border:"2px solid rgba(200,150,62,0.4)",display:"flex",alignItems:"center",justifyContent:"center",marginBottom:20 }}>
-                  <div style={{ width:0,height:0,borderTop:"12px solid transparent",borderBottom:"12px solid transparent",borderLeft:"20px solid #C8963E",marginLeft:4 }}/>
-                </div>
-                <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:15,fontWeight:600,color:"#E8E4DE",marginBottom:6 }}>See how deep research actually works</div>
-                <div style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:13,color:"rgba(232,228,222,0.35)" }}>90 seconds</div>
-              </div>
+      {/* ═══ FOUNDER ═══ */}
+      <section className="bl-section bl-founder-section" style={{ padding:"40px 40px 120px" }}>
+        <div className="bl-founder-grid" style={{ maxWidth:860,margin:"0 auto",display:"grid",gridTemplateColumns:"220px 1fr",gap:64,alignItems:"center" }}>
+          <FadeIn direction="left" delay={0.1}>
+            <div style={{ borderRadius:"50%",overflow:"hidden",aspectRatio:"1/1",border:"2px solid rgba(200,150,62,0.25)",background:"#0A0E17",flexShrink:0 }}>
+              <img src="/noah-founder.jpg" alt="Noah – Founder of Bluechainlogic" style={{ width:"100%",height:"100%",objectFit:"cover",objectPosition:"center 40%",display:"block",mixBlendMode:"lighten" }} />
             </div>
           </FadeIn>
+          <div>
+            <FadeIn delay={0.2}>
+              <p style={{ fontFamily:"'Bricolage Grotesque', serif",fontSize:28,fontWeight:700,lineHeight:1.4,letterSpacing:"-0.02em",color:"#E8E4DE",margin:"0 0 20px" }}>
+                I built Bluechainlogic because I became obsessed with what AI could do in outbound.
+              </p>
+            </FadeIn>
+            <FadeIn delay={0.3}>
+              <p style={{ fontFamily:"'Instrument Sans', sans-serif",fontSize:17,lineHeight:1.85,color:"rgba(232,228,222,0.45)",margin:"0 0 32px" }}>
+                The depth of research we can now do on a single prospect changed everything for me. The result is outbound that reaches the right person, with the right message, at exactly the right moment, and we can do that at scale.
+              </p>
+            </FadeIn>
+            <FadeIn delay={0.4}>
+              <div style={{ display:"flex",alignItems:"center",gap:12,paddingTop:24,borderTop:"1px solid rgba(255,255,255,0.06)" }}>
+                <div style={{ fontFamily:"'Instrument Sans', sans-serif" }}>
+                  <div style={{ fontSize:14,fontWeight:600,color:"#E8E4DE" }}>Noah</div>
+                  <div style={{ fontSize:12,color:"rgba(200,150,62,0.6)",marginTop:2 }}>Founder · Bluechainlogic</div>
+                </div>
+              </div>
+            </FadeIn>
+          </div>
         </div>
       </section>
 
